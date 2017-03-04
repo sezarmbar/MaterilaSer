@@ -5,16 +5,94 @@
       <i class="material-icons app-toolbar-menu">menu</i>
     </button>
     Material
+    <button class="app-icon-button" (click)="sidenavLeft.toggle()">
+      <i class="material-icons app-toolbar-menu">menu</i>
+    </button>
     <span class="app-toolbar-filler"></span>
     <button md-button (click)="isDarkTheme = !isDarkTheme">DARK THEME</button>
   </md-toolbar>
 
   <md-sidenav-container class="app-layout"  >
-    <md-sidenav #sidenav mode="side" class="app-sidenav" mode="over"  tabindex="-1">
+    <md-sidenav #sidenav mode="side" class="app-sidenav" mode="over"  tabindex="-1" align="end">
       Sidenav
     </md-sidenav>
-
+    <md-sidenav #sidenavLeft mode="side" class="app-sidenav" mode="over"  tabindex="-1" align="start">
+      Mahmoud
+    </md-sidenav>
     <div class="app-content" (swiperight)="sidenav.open()" (swipeleft)="sidenav.close()">
+      <md-grid-list cols="3" rowHeight="250px">
+        <md-grid-tile>
+          <md-card class="example-card">
+        <md-card-header>
+          <div md-card-avatar class="example-header-image"></div>
+          <md-card-title>Shiba Inu</md-card-title>
+          <md-card-subtitle>Dog Breed</md-card-subtitle>
+        </md-card-header>
+        <!--<img md-card-image src="assets/img/examples/shiba2.jpg">-->
+        <md-card-content>
+          <p>
+            The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
+            A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
+            bred for hunting.
+          </p>
+        </md-card-content>
+        <md-card-actions>
+          <button md-button>LIKE</button>
+          <button md-button>SHARE</button>
+        </md-card-actions>
+      </md-card>
+        </md-grid-tile>
+        <md-grid-tile><md-card class="example-card">
+        <md-card-header>
+          <div md-card-avatar class="example-header-image"></div>
+          <md-card-title>Shiba Inu</md-card-title>
+          <md-card-subtitle>Dog Breed</md-card-subtitle>
+        </md-card-header>
+        <!--<img md-card-image src="assets/img/examples/shiba2.jpg">-->
+        <md-card-content>
+          <p>
+            The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
+            A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
+            bred for hunting.
+          </p>
+        </md-card-content>
+        <md-card-actions>
+          <button md-button>LIKE</button>
+          <button md-button>SHARE</button>
+        </md-card-actions>
+      </md-card>
+        </md-grid-tile>
+        <md-grid-tile>
+          <md-card class="example-card">
+        <md-card-header>
+          <div md-card-avatar class="example-header-image"></div>
+          <md-card-title>Shiba Inu</md-card-title>
+          <md-card-subtitle>Dog Breed</md-card-subtitle>
+        </md-card-header>
+        <!--<img md-card-image src="assets/img/examples/shiba2.jpg">-->
+        <md-card-content>
+          <p>
+            The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
+            A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
+            bred for hunting.
+          </p>
+        </md-card-content>
+        <md-card-actions>
+          <button md-button>LIKE</button>
+          <button md-button>SHARE</button>
+        </md-card-actions>
+      </md-card>
+        </md-grid-tile>
+      </md-grid-list>
+      
+      <md-card>
+        <md-chip-list>
+          <md-chip>One fish</md-chip>
+          <md-chip>Two fish</md-chip>
+          <md-chip color="primary" selected="true">Primary fish</md-chip>
+          <md-chip color="accent" selected="true">Accent fish</md-chip>
+        </md-chip-list>
+      </md-card>
       <md-card>
         <button md-button>FLAT</button>
         <button md-raised-button md-tooltip="This is a tooltip!">RAISED</button>
@@ -28,7 +106,9 @@
         <md-checkbox [indeterminate]="true">Indeterminate</md-checkbox>
         <md-checkbox [disabled]="true">Disabled</md-checkbox>
       </md-card>
-
+      <md-card>
+        <md-slider thumbLabel="true"></md-slider>
+      </md-card>
       <md-card>
         <md-radio-button name="symbol">Alpha</md-radio-button>
         <md-radio-button name="symbol">Beta</md-radio-button>
