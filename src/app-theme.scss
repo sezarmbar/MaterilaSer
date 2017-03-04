@@ -1,10 +1,10 @@
 @import '~@angular/material/core/theming/all-theme';
-
+@import '_palette.scss';
 // NOTE: Theming is currently experimental and not yet publically released!
 
 @include mat-core();
 
-$primary: mat-palette($mat-deep-purple);
+$primary: mat-palette($mat-oldemain);
 $accent:  mat-palette($mat-amber, A200, A100, A400);
 
 $theme: mat-light-theme($primary, $accent);
@@ -12,7 +12,7 @@ $theme: mat-light-theme($primary, $accent);
 @include angular-material-theme($theme);
 
 .m2app-dark {
-  $dark-primary: mat-palette($mat-pink, 700, 500, 900);
+  $dark-primary: mat-palette($mat-oldedark, 700, 500, 900);
   $dark-accent:  mat-palette($mat-blue-grey, A200, A100, A400);
   $dark-warn:    mat-palette($mat-deep-orange);
 
