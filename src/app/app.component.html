@@ -17,7 +17,11 @@
       Sidenav
     </md-sidenav>
     <md-sidenav #sidenavLeft mode="side" class="app-sidenav" mode="over"  tabindex="-1" align="start">
-      Mahmoud
+
+         <app-slider></app-slider>
+        <div style="height:100px">
+        </div>
+
     </md-sidenav>
     <div class="app-content" (swiperight)="sidenav.open()" (swipeleft)="sidenav.close()">
       <md-grid-list cols="3" rowHeight="250px">
@@ -31,8 +35,7 @@
         <!--<img md-card-image src="assets/img/examples/shiba2.jpg">-->
         <md-card-content>
           <p>
-            The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
-            A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
+            The Shhiba Inu was originally
             bred for hunting.
           </p>
         </md-card-content>
@@ -227,4 +230,6 @@
   <span class="app-action" [class.m2app-dark]="isDarkTheme">
     <button md-fab><md-icon>check circle</md-icon></button>
   </span>
+
+
 </div>

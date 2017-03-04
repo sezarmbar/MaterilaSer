@@ -5,21 +5,25 @@ import { HttpModule } from '@angular/http';
 import { MaterialModule } from '@angular/material';
 import 'hammerjs';
 
+import {KSSwiperModule} from 'angular2-swiper';
+
 import { AppComponent, DialogContent } from './app.component';
+import { SliderComponent } from './share/slider/slider.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    DialogContent
+    DialogContent,
+    SliderComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule,
+    HttpModule, 
     MaterialModule
   ],
   entryComponents: [DialogContent],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [KSSwiperModule],
+  bootstrap: [AppComponent] 
 })
 export class AppModule { }

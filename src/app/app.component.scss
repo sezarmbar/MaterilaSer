@@ -8,14 +8,14 @@ md-sidenav-container.m2app-dark {
 }
 
 .app-content md-card {
-  margin: 20px;
+  margin: 10px;
 }
 .app-layout{
   height: calc(100vh - 56px);
 }
 .app-sidenav {
-  padding: 10px;
-  min-width: 320px;
+  padding: 0px;
+  min-width: 320px !important;
 }
 
 .app-content md-checkbox {
