@@ -1,6 +1,6 @@
 import {Component, Optional, ViewChild, ViewContainerRef} from '@angular/core';
 import {MdDialog, MdDialogRef, MdSnackBar , MdSidenav} from '@angular/material';
-import { SliderComponent } from './share/slider/slider.component';
+
 declare  var window:any;
 
 @Component({
@@ -9,12 +9,13 @@ declare  var window:any;
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
- @ViewChild(SliderComponent) sliderPic;
- @ViewChild('sidenavLeft') sidenavLeft: MdSidenav; 
+
+ @ViewChild('sidenavEnd') sidenavEnd: MdSidenav; 
  public isDarkTheme: boolean = false;
  public lastDialogResult: string;
  public sidenavOpen:boolean = false;
  private slideInit:boolean = false;
+ 
   foods: any[] = [
     {name: 'Pizza', rating: 'Excellent'},
     {name: 'Burritos', rating: 'Great'},
@@ -45,12 +46,14 @@ export class AppComponent {
 
   ngOnInit(){
     if (window.screen.width > 1000) {
-      this.sidenavLeft.open();
+      this.sidenavEnd.open();
+    }else{
+      
     }
   }
-  onSelectChange = ($event: any): void => {
-    console.log('index => ', $event.index);
-    if($event.index === 1 ){
+  onSelectChange = (event: any): void => {
+
+    if(event.index === 1 ){
       this.slideInit = true;
     }else{
       this.slideInit = false;

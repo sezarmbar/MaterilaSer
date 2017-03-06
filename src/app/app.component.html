@@ -1,11 +1,11 @@
-<div [class.m2app-dark]="isDarkTheme"  (swipeleft)="sidenav.close()" >
+<div [class.m2app-dark]="isDarkTheme" >
 
   <md-toolbar color="primary" role="toolbar">
-    <button class="app-icon-button" (click)="sidenav.toggle()">
+    <button class="app-icon-button" (click)="sidenavStart.toggle()">
       <i class="material-icons app-toolbar-menu">menu</i>
     </button>
     Material
-    <button class="app-icon-button" (click)="sidenavLeft.toggle()">
+    <button class="app-icon-button" (click)="sidenavEnd.toggle()">
       <i class="material-icons app-toolbar-menu">menu</i>
     </button>
     <span class="app-toolbar-filler"></span>
@@ -13,10 +13,10 @@
   </md-toolbar>
 
   <md-sidenav-container class="app-layout"  >
-    <md-sidenav #sidenav mode="side" class="app-sidenav" mode="over"  tabindex="-1" align="end">
+    <md-sidenav #sidenavStart mode="side" class="app-sidenav" mode="over"  tabindex="-1" align="start">
       Sidenav
     </md-sidenav>
-    <md-sidenav #sidenavLeft mode="side" class="app-sidenav" mode="side"  tabindex="-1" align="start">
+    <md-sidenav #sidenavEnd mode="side" class="app-sidenav" mode="side"  tabindex="-1" align="end">
 
       <md-tab-group (selectChange)="onSelectChange($event)">
         <md-tab label="One">
@@ -28,7 +28,8 @@
 
 
     </md-sidenav>
-    <div class="app-content" (swiperight)="sidenav.open()" (swipeleft)="sidenav.close()">
+    <!--<div class="app-content" (swiperight)="sidenav.open()" (swipeleft)="sidenav.close()">-->
+    <div class="app-content">
       <md-grid-list cols="3" rowHeight="250px">
         <md-grid-tile>
           <md-card class="example-card">
