@@ -16,14 +16,5 @@ export class SliderComponent implements AfterViewInit {
         spaceBetween: 10,
     });
   }
-  // make(){
-  //   let swiper = new Swiper('.swiper-container', {
-  //       pagination: '.swiper-pagination',
-  //       paginationClickable: true,
-  //       effect: 'coverflow',
-  //       spaceBetween: 10,
-  //   });
-
-  // }
-
+  
 }
