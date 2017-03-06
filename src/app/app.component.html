@@ -16,11 +16,16 @@
     <md-sidenav #sidenav mode="side" class="app-sidenav" mode="over"  tabindex="-1" align="end">
       Sidenav
     </md-sidenav>
-    <md-sidenav #sidenavLeft mode="side" class="app-sidenav" mode="over"  tabindex="-1" align="start">
+    <md-sidenav #sidenavLeft mode="side" class="app-sidenav" mode="side"  tabindex="-1" align="start">
 
-         <app-slider></app-slider>
-        <div style="height:100px">
-        </div>
+      <md-tab-group (selectChange)="onSelectChange($event)">
+        <md-tab label="One">
+        </md-tab>
+        <md-tab label="Two" >
+          <app-slider *ngIf="slideInit" ></app-slider>
+        </md-tab>
+      </md-tab-group>
+
 
     </md-sidenav>
     <div class="app-content" (swiperight)="sidenav.open()" (swipeleft)="sidenav.close()">

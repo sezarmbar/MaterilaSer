@@ -1,5 +1,6 @@
 @import '~@angular/material/core/theming/all-theme';
 @import '_palette.scss';
+@import 'app/share/slider/slider.component.scss';
 // NOTE: Theming is currently experimental and not yet publically released!
 
 @include mat-core();
@@ -10,6 +11,7 @@ $warn:    mat-palette($mat-red);
 $theme: mat-light-theme($primary, $accent,$warn);
 
 @include angular-material-theme($theme);
+@include pic-slider-theme($theme);
 
 .m2app-dark {
   $dark-primary: mat-palette($mat-oldedark, 700, 500, 900);
@@ -17,6 +19,8 @@ $theme: mat-light-theme($primary, $accent,$warn);
   $dark-warn:    mat-palette($mat-deep-orange);
 
   $dark-theme: mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
-
+  
   @include angular-material-theme($dark-theme);
+  @include pic-slider-theme($dark-theme);
 }
+

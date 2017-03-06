@@ -1,5 +1,7 @@
-import {Component, Optional} from '@angular/core';
-import {MdDialog, MdDialogRef, MdSnackBar} from '@angular/material';
+import {Component, Optional, ViewChild, ViewContainerRef} from '@angular/core';
+import {MdDialog, MdDialogRef, MdSnackBar , MdSidenav} from '@angular/material';
+import { SliderComponent } from './share/slider/slider.component';
+declare  var window:any;
 
 @Component({
   selector: 'app-root',
@@ -7,9 +9,12 @@ import {MdDialog, MdDialogRef, MdSnackBar} from '@angular/material';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
- isDarkTheme: boolean = false;
-  lastDialogResult: string;
-
+ @ViewChild(SliderComponent) sliderPic;
+ @ViewChild('sidenavLeft') sidenavLeft: MdSidenav; 
+ public isDarkTheme: boolean = false;
+ public lastDialogResult: string;
+ public sidenavOpen:boolean = false;
+ private slideInit:boolean = false;
   foods: any[] = [
     {name: 'Pizza', rating: 'Excellent'},
     {name: 'Burritos', rating: 'Great'},
@@ -19,6 +24,7 @@ export class AppComponent {
   progress: number = 0;
 
   constructor(private _dialog: MdDialog, private _snackbar: MdSnackBar) {
+    
     // Update the value for the progress-bar on an interval.
     setInterval(() => {
       this.progress = (this.progress + Math.floor(Math.random() * 4) + 1) % 100;
@@ -36,6 +42,21 @@ export class AppComponent {
   showSnackbar() {
     this._snackbar.open('YUM SNACKS', 'CHEW');
   }
+
+  ngOnInit(){
+    if (window.screen.width > 1000) {
+      this.sidenavLeft.open();
+    }
+  }
+  onSelectChange = ($event: any): void => {
+    console.log('index => ', $event.index);
+    if($event.index === 1 ){
+      this.slideInit = true;
+    }else{
+      this.slideInit = false;
+    }
+  }
+
 }
 
 
