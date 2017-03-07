@@ -4,26 +4,36 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { MaterialModule } from '@angular/material';
 import 'hammerjs';
+import { ServiceAppRoutingModule } from './app-routing.module';
 
-import {KSSwiperModule} from 'angular2-swiper';
+import { serivceModul } from './service/';
 
-import { AppComponent, DialogContent } from './app.component';
-import { SliderComponent } from './share/slider/slider.component';
+import { ParkTablePipe } from './pages/haus-park/pipe';
+
+import { AppComponent } from './app.component';
+import { SliderComponent } from './share/slider';
+import { HomeComponent , DialogContent } from './pages/home';
+import { HausParkComponent } from './pages/haus-park';
 
 @NgModule({
   declarations: [
     AppComponent,
     DialogContent,
-    SliderComponent
+    SliderComponent,
+    HomeComponent,
+    HausParkComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule, 
-    MaterialModule
+    MaterialModule,
+    ServiceAppRoutingModule,
+    ParkTablePipe,
+    serivceModul
   ],
   entryComponents: [DialogContent],
-  providers: [KSSwiperModule],
+  providers: [],
   bootstrap: [AppComponent] 
 })
 export class AppModule { }

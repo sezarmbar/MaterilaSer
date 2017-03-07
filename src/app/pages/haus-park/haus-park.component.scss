@@ -1,0 +1,85 @@
+@mixin haus-park-theme($theme) {
+  // Extract whichever individual palettes you need from the theme.
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+
+  th {
+        background-color: mat-color($primary);
+        color: white;
+    }
+    .warning {
+        background-color: mat-color($primary,50);
+        border-left: 6px solid mat-color($primary, 500);
+        color: black;
+    }
+    .danger {
+        background-color: mat-color($accent,200);
+        border-left: 6px solid mat-color($accent,900);
+    }
+}
+.app-content {
+  padding: 0px; 
+}
+.app-content md-card {
+  margin: 10px;
+}
+.app-layout{
+  height: calc(100vh - 56px);
+}
+.app-sidenav {
+  padding: 0px;
+  min-width: 320px !important;
+}
+// Table
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+th, td {
+    text-align: center;
+    padding: 8px;
+}
+.dataHeaderTable{
+    text-align:center;
+}
+// .dataTable{
+//         background: rgba(192,192,192,0.2);
+// }
+.orange {
+    color: Orange;
+}
+.greene {
+     color: Green; 
+}
+.red {
+    color: Red;
+}
+
+.text-center{
+   text-align:center;
+}
+.info {
+    background-color: #e7f3fe;
+    border-left: 6px solid #2196F3;
+}
+
+.success {
+    background-color: #ddffdd;
+    border-left: 6px solid #4CAF50;
+}
+
+
+@media screen and (min-width: 600px) {
+    .dataTable{
+        width: 600px;  
+        margin: auto;
+        /*background-color:#faf8f4;*/
+    }
+}
+@media screen and (max-width:599px ) {
+    .dataTable{
+        width: 100%;  
+        margin: auto;
+        /*background-color:#faf8f4;*/
+    }
+}

@@ -1,9 +1,6 @@
-md-sidenav-container.m2app-dark {
-      background-color: #585858;
-}
 
-.app-main-content {
-  padding: 0px;
+.app-content {
+  padding: 5px;
   
 }
 
@@ -22,9 +19,7 @@ md-sidenav-container.m2app-dark {
   margin: 10px;
 }
 
-.app-toolbar-filler {
-  flex: 1 1 auto;
-}
+
 
 .app-toolbar-menu {
   padding: 0 14px 0 14px;
@@ -47,9 +42,33 @@ md-sidenav-container.m2app-dark {
   text-align: left;
   text-decoration: none;
 }
+
 .app-action {
   display: inline-block;
   position: fixed;
   bottom: 20px;
   right: 20px;
 }
+
+.app-spinner {
+  height: 30px;
+  width: 30px;
+  display: inline-block;
+}
+
+.app-input-icon {
+  font-size: 16px;
+}
+
+.app-list {
+  border: 1px solid rgba(0,0,0,0.12);
+
+  margin: 20px;
+}
+
+.app-progress {
+  margin: 20px;
+}
+// .example-card {
+//   width: 400px;
+// }

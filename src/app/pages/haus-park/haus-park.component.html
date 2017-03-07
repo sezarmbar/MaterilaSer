@@ -1,0 +1,48 @@
+  <md-sidenav-container class="app-layout"  >    
+    <md-sidenav #sidenavEnd mode="over" class="app-sidenav"  tabindex="-1" align="end">
+      
+      <md-tab-group #tabsEnd (selectChange)="onSelectChange($event)" [selectedIndex]="selectedIndex">
+        <md-tab label="One">
+
+        </md-tab>
+        <md-tab label="Two" >
+          <app-slider *ngIf="slideInit" ></app-slider>
+        </md-tab>
+      </md-tab-group>
+    </md-sidenav>
+    <div class="app-content" (swiperight)="sidenavEnd.open()" (swipeleft)="sidenavEnd.close()">
+      
+      <table class="text-center dataHeaderTable" width="100%"  >
+        <tr>
+          <td>
+            <h3>Parkleit-Informationssystem
+            <p>der Stadt Oldenburg</p></h3>
+          </td>
+        </tr>
+        <tr>
+          <td>Letzte Aktualisierung: {{lastTime}}</td>
+        </tr>
+      </table>  
+      <table class="dataTable">
+        <thead>
+          <tr>
+            <th>Parkhaus-Name</th>
+            <th>Freie Plätze</th>
+            <th>Trend</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let park of Parkhaus" (click)="showPark(park);" [hidden]="park.Name=='Ratsherren'|| park.Name=='Altes Gymnasium'" [ngClass]="park | opencloseFilter" >
+            <td>{{park.Name}} </td>
+            <td [ngClass]="park.Gesamt-park.Aktuell | freiplatzeFilter">{{park.Gesamt-park.Aktuell}}</td>
+            <td > <img src="./assets/img/pfeil-{{park.Trend}}.gif"  height="15" width="15"/></td>
+            <td [ngClass]="park.Status | statusFilter ">{{park.Status}}</td>
+          </tr>
+        </tbody>
+      </table>
+
+      
+      <button md-raised-button md-tooltip="This is a tooltip!" (click)="sidenavEnd.toggle()">RAISED</button>
+    </div>
+  </md-sidenav-container>
