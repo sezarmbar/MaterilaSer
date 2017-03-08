@@ -1,21 +1,32 @@
 <div [class.m2app-dark]="isDarkTheme" >
 
   <md-toolbar color="primary" role="toolbar" >
-    <button class="app-icon-button" (click)="sidenavStart.toggle()">
+    <button class="app-icon-button" (click)="sidenavStart.toggle()" *ngIf="!menuIcon">
       <i class="material-icons app-toolbar-menu">menu</i>
     </button>
     Material
     
     <span class="app-toolbar-filler"></span>
-    <button md-button (click)="isDarkTheme = !isDarkTheme">DARK THEME</button>
+    <div *ngIf="menuSwich">
+      <button md-button routerLink="/home">Home</button>
+      <button md-button routerLink="/hauspark">Park Haus</button>
+      <button md-button routerLink="/hausmap">Zum Map</button>    
+      <button md-button (click)="isDarkTheme = !isDarkTheme">DARK THEME</button>
+    </div>
   </md-toolbar>
 
 
   <md-sidenav-container class="app-layout"  >
     <md-sidenav #sidenavStart  class="app-sidenav" mode="over"  tabindex="-1" align="start" >
     <div style="height: 100%" (swipeleft)="sidenavStart.close()"> 
+      <md-list (click)="sidenavStart.toggle()">
+        <md-list-item> <button md-button routerLink="/home">Home</button> </md-list-item>
+        <md-list-item> <button md-button routerLink="/hauspark">Park Haus</button> </md-list-item>
+        <md-list-item> <button md-button routerLink="/hausmap">Zum Map</button> </md-list-item>
 
-    </div>
+      </md-list>
+        <button md-button (click)="isDarkTheme = !isDarkTheme">DARK THEME</button>
+      </div>
     </md-sidenav>
    
     <!--<div class="app-content" (swiperight)="sidenav.open()" (swipeleft)="sidenav.close()">-->

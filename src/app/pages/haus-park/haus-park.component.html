@@ -10,7 +10,7 @@
         <md-tab label="Two" >
            <table (swiperight)="sidenavEnd.close()">
               <tr>
-                <td><h1> {{currentPark.Name}}</h1>Letzte Aktualisierung:{{lastTime}}</td>
+                <td><h1> {{currentPark.Name | parkHausName}}</h1>Letzte Aktualisierung:{{lastTime}}</td>
               </tr>
               </table>
               <table>
@@ -56,7 +56,7 @@
         </thead>
         <tbody>
           <tr *ngFor="let park of Parkhaus" (click)="showPark(park);" [hidden]="park.Name=='Ratsherren'|| park.Name=='Altes Gymnasium'" [ngClass]="park | opencloseFilter" >
-            <td>{{park.Name}} </td>
+            <td>{{park.Name | parkHausName}} </td>
             <td [ngClass]="park.Gesamt-park.Aktuell | freiplatzeFilter">{{park.Gesamt-park.Aktuell}}</td>
             <td > <img src="./assets/img/pfeil-{{park.Trend}}.gif"  height="15" width="15"/></td>
             <td [ngClass]="park.Status | statusFilter ">{{park.Status}}</td>

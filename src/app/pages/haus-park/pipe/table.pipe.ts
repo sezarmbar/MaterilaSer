@@ -53,3 +53,20 @@ export class statusFilter  implements PipeTransform{
        }
    }
 }
+
+@Pipe({
+  name: 'parkHausName',
+  pure: false
+})
+export class parkHausName  implements PipeTransform{
+   transform(name : string){
+       if (name === 'Heiligengeist-Hoefe') {
+           return 'Heiligengeist-Höfe';
+       }
+       if (name === 'Schlosshoefe') {
+           return 'Schlosshöfe';
+       }else{
+           return name;
+       }
+   }
+}

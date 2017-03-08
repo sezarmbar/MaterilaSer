@@ -12,6 +12,9 @@ export class AppComponent {
 
 //  @ViewChild('sidenavEnd') sidenavEnd: MdSidenav; 
  public isDarkTheme: boolean = true;
+ private menuSwich : boolean = false;
+ private menuIcon : boolean = false;
+
 //  public lastDialogResult: string;
 //  public sidenavOpen:boolean = false;
 //  private slideInit:boolean = false;
@@ -44,13 +47,12 @@ export class AppComponent {
 //     this._snackbar.open('YUM SNACKS', 'CHEW');
 //   }
 
-//   ngOnInit(){
-//     if (window.screen.width > 1000) {
-//       this.sidenavEnd.open();
-//     }else{
-      
-//     }
-//   }
+  ngOnInit(){
+    if (window.screen.width > 900) {
+      this.menuSwich = true;
+      this.menuIcon = true;
+    }
+  }
 //   onSelectChange = (event: any): void => {
 
 //     if(event.index === 1 ){

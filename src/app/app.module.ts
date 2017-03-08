@@ -13,7 +13,7 @@ import { ParkTablePipe } from './pages/haus-park/pipe';
 import { AppComponent } from './app.component';
 import { SliderComponent } from './share/slider';
 import { HomeComponent , DialogContent } from './pages/home';
-import { HausParkComponent } from './pages/haus-park';
+import { HausParkComponent , HausMapComponent } from './pages/haus-park';
 
 @NgModule({
   declarations: [
@@ -21,7 +21,8 @@ import { HausParkComponent } from './pages/haus-park';
     DialogContent,
     SliderComponent,
     HomeComponent,
-    HausParkComponent
+    HausParkComponent,
+    HausMapComponent
   ],
   imports: [
     BrowserModule,
