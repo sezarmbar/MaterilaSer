@@ -12,8 +12,10 @@
 
 
   <md-sidenav-container class="app-layout"  >
-    <md-sidenav #sidenavStart mode="side" class="app-sidenav" mode="over"  tabindex="-1" align="start">
-      Sidenav
+    <md-sidenav #sidenavStart  class="app-sidenav" mode="over"  tabindex="-1" align="start" >
+    <div style="height: 100%" (swipeleft)="sidenavStart.close()"> 
+
+    </div>
     </md-sidenav>
    
     <!--<div class="app-content" (swiperight)="sidenav.open()" (swipeleft)="sidenav.close()">-->

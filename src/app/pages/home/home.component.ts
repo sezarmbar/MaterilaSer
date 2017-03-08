@@ -46,8 +46,6 @@ export class HomeComponent {
   ngOnInit(){
     if (window.screen.width > 1000) {
       this.sidenavEnd.open();
-    }else{
-      
     }
   }
   onSelectChange = (event: any): void => {

@@ -36,6 +36,7 @@ export class SliderComponent implements AfterViewInit {
      for(let i =0;i<this.parkhausePicNum.length;i++){
        let parkHaus = this.parkhausePicNum[i];
        if(parkHaus.name===this.picFileName){
+         this.picFileName= this.picFileName.replace(/\s/g, '')
          this.picNum = Number(parkHaus.picNum);
        }
      }

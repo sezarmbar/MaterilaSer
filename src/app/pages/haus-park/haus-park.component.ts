@@ -3,7 +3,7 @@ import {Observable} from 'rxjs/Rx';
 import {MdSidenav,MdTabGroup} from "@angular/material";
 import { SliderComponent } from '../../share/slider';
 import { ParkingsService , addresShared } from '../../service';
-
+import { Subscription } from 'rxjs'
 @Component({
   selector: 'app-haus-park',
   templateUrl: './haus-park.component.html',
@@ -17,7 +17,7 @@ export class HausParkComponent implements OnInit {
    private Parkhaus:any;
    private lastTime:any;
    private currentPark={};
-   
+   private subscription: Subscription;
    constructor(private service:ParkingsService,private addresService:addresShared) {}
 
   ngOnInit() {
@@ -31,10 +31,12 @@ export class HausParkComponent implements OnInit {
         this.lastTime = parkings.Daten.Zeitstempel;
       });
   }
+  onCloseSidenavEnd(){
+    this.tabEnd.selectedIndex = 0;
+  }
   showPark(park) {
     this.currentPark=park; 
     this.addresService.setParkHausName(park.Name);
-    this.tabEnd.selectedIndex = 0;
     this.sidenav.open();
   }
   onSelectChange = (event: any): void => {
