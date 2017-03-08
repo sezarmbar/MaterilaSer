@@ -1,0 +1,65 @@
+@mixin haus-park-theme($theme) {
+  // Extract whichever individual palettes you need from the theme.
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+
+  .btnOpen, .btnclose , .tthem-color {
+        background-color: mat-color($accent);
+        color: mat-color($accent,default-contrast);
+    }
+    .adp-placemark{
+        background-color: mat-color($primary);
+        color: mat-color($primary,default-contrast);
+        border: mat-color($primary);
+    }
+    .warning {
+        background-color: mat-color($primary,50);
+        border-left: 6px solid mat-color($primary, 500);
+        color: black;
+    }
+    .danger {
+        background-color: mat-color($accent,200);
+        border-left: 6px solid mat-color($accent,900);
+    }
+    .adp-directions, .adp-summary {
+        color: mat-color($primary,default-contrast);
+    }
+}
+
+
+.sebm-google-map-container {
+height: 100vh !important;
+width: 100% !important;
+position: fixed !important;
+margin-bottom: 90px;
+
+z-index: 0;
+}
+md-sidenav {
+  width: 320px;
+}
+.btnOpen{
+  z-index: 2;
+  position: absolute;
+  left: 5px;
+  top: 5px;
+}
+.btnclose{
+  position: absolute;
+  right: 5px;
+  top: 5px;
+}
+.btnClose{
+  z-index: 2;
+  position: absolute;
+  left: 320px;
+  top: 80px;
+}
+.bc-color {
+    background-color:#f8f5f0;
+}
+.tocare-color {
+    background-color: #00468c;
+    color: white;
+    opacity: 0.5;
+}

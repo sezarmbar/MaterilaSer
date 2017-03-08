@@ -4,7 +4,7 @@
       <md-tab-group #tabsEnd (selectChange)="onSelectChange($event)" [selectedIndex]="selectedIndex">
         <md-tab label="One">
           <div style="height: calc(100vh - 5px);" (swiperight)="sidenavEnd.close()"> 
-             <div>
+             <div routerLink="/hausmap">
               <side-map [elPlanRout]='elPlanRout'></side-map>
             </div>
             <div id="right-panel" #planRout></div> 

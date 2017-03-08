@@ -3,6 +3,7 @@ import {autoPosition} from './autoPosition';
 
 @Injectable()
 export class addresShared {
+  parkhausname:string;
 
   autoPosition: autoPosition={
    autoPoLat : localStorage.getItem('autoPoLat') ? JSON.parse(localStorage.getItem('autoPoLat')) : 0,
@@ -10,6 +11,7 @@ export class addresShared {
   };
 
   setParkHausName(parkhausname) {
+    this.parkhausname = parkhausname;
     localStorage.setItem('parkhausname', parkhausname);
   }
   getParkHausName() {
