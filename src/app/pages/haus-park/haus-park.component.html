@@ -4,7 +4,10 @@
       <md-tab-group #tabsEnd (selectChange)="onSelectChange($event)" [selectedIndex]="selectedIndex">
         <md-tab label="One">
           <div style="height: calc(100vh - 5px);" (swiperight)="sidenavEnd.close()"> 
-
+             <div>
+              <side-map [elPlanRout]='elPlanRout'></side-map>
+            </div>
+            <div id="right-panel" #planRout></div> 
           </div>
         </md-tab>
         <md-tab label="Two" >
@@ -55,7 +58,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let park of Parkhaus" (click)="showPark(park);" [hidden]="park.Name=='Ratsherren'|| park.Name=='Altes Gymnasium'" [ngClass]="park | opencloseFilter" >
+          <tr *ngFor="let park of Parkhaus" (click)="showPark(park);sideMap.serchAddres(park.Name);" [hidden]="park.Name=='Ratsherren'|| park.Name=='Altes Gymnasium'" [ngClass]="park | opencloseFilter" >
             <td>{{park.Name | parkHausName}} </td>
             <td [ngClass]="park.Gesamt-park.Aktuell | freiplatzeFilter">{{park.Gesamt-park.Aktuell}}</td>
             <td > <img src="./assets/img/pfeil-{{park.Trend}}.gif"  height="15" width="15"/></td>

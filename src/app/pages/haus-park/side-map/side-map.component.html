@@ -1,0 +1,12 @@
+ <sebm-google-map [latitude]="destLat" [longitude]="destLng" [zoom]="zoom">
+  <sebm-google-map-marker [latitude]="destLat" [longitude]="destLng" 
+        [label]="" iconUrl="assets/p_24x24.png">
+  </sebm-google-map-marker>
+  <sebm-google-map-marker [latitude]="oriLat" [longitude]="oriLng" iconUrl="assets/h_24x24.png">
+  </sebm-google-map-marker>
+            <sebm-google-map-directions
+                                      [destination]="destination"
+                                      [directionsDisplay]="directionsDisplay"
+                                      [elPlanRout]="sideelPlanRout">
+          </sebm-google-map-directions>
+</sebm-google-map>

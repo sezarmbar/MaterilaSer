@@ -1,9 +1,10 @@
-import { Component, OnInit , ViewChild } from '@angular/core';
+import { Component, OnInit , ViewChild, ElementRef } from '@angular/core';
 import {Observable} from 'rxjs/Rx';
 import {MdSidenav,MdTabGroup} from "@angular/material";
 import { SliderComponent } from '../../share/slider';
 import { ParkingsService , addresShared } from '../../service';
-import { Subscription } from 'rxjs'
+import { SideMapComponent } from './side-map';
+
 @Component({
   selector: 'app-haus-park',
   templateUrl: './haus-park.component.html',
@@ -12,16 +13,21 @@ import { Subscription } from 'rxjs'
 export class HausParkComponent implements OnInit {
    @ViewChild('tabsEnd') tabEnd:MdTabGroup;
    @ViewChild('sidenavEnd') sidenav: MdSidenav;
+   @ViewChild('planRout') elPlanRout:ElementRef;
+   @ViewChild(SideMapComponent) sideMap;
    @ViewChild(SliderComponent) sliderChild;
    private slideInit:boolean = false;
    private Parkhaus:any;
    private lastTime:any;
    private currentPark={};
-   private subscription: Subscription;
+   private subscription;
    constructor(private service:ParkingsService,private addresService:addresShared) {}
 
   ngOnInit() {
     this.callService() ;
+    this.subscription = Observable.interval(2000 * 60).subscribe(x => {
+      this.callService();
+    });
   }
 
   callService() {
@@ -45,6 +51,9 @@ export class HausParkComponent implements OnInit {
     }else{
       this.slideInit = false;
     }
+  }
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 
 }

@@ -3,17 +3,22 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { MaterialModule } from '@angular/material';
+
+import { AgmCoreModule } from 'angular2-google-maps/core';
+
 import 'hammerjs';
+
+
 import { ServiceAppRoutingModule } from './app-routing.module';
-
+// service
 import { serivceModul } from './service/';
-
+//pipe
 import { ParkTablePipe } from './pages/haus-park/pipe';
 
 import { AppComponent } from './app.component';
 import { SliderComponent } from './share/slider';
 import { HomeComponent , DialogContent } from './pages/home';
-import { HausParkComponent , HausMapComponent } from './pages/haus-park';
+import { HausParkComponent , HausMapComponent , DirectionsMapDirective , SideMapComponent} from './pages/haus-park';
 
 @NgModule({
   declarations: [
@@ -22,7 +27,9 @@ import { HausParkComponent , HausMapComponent } from './pages/haus-park';
     SliderComponent,
     HomeComponent,
     HausParkComponent,
-    HausMapComponent
+    HausMapComponent,
+    DirectionsMapDirective,
+    SideMapComponent
   ],
   imports: [
     BrowserModule,
@@ -31,7 +38,10 @@ import { HausParkComponent , HausMapComponent } from './pages/haus-park';
     MaterialModule,
     ServiceAppRoutingModule,
     ParkTablePipe,
-    serivceModul
+    serivceModul,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyDI4N7QdySwfP8aO0oWipZPbGKJHGAUI_M'
+    })
   ],
   entryComponents: [DialogContent],
   providers: [],
