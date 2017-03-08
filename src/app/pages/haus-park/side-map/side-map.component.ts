@@ -37,8 +37,6 @@ export class SideMapComponent implements OnInit {
   }
 
   serchAddres(destenyInput){
-    console.log('destenyInput' + destenyInput);
-    
      for(var i =0;i<this.parkhauseAddreses.length;i++){
        let parkHaus = this.parkhauseAddreses[i];
        if(parkHaus.name===destenyInput){
@@ -66,8 +64,6 @@ export class SideMapComponent implements OnInit {
    setLatLng(lat:number, lng:number) {
         this.oriLat = lat;
         this.oriLng = lng;
-        console.log(lat , lng);
-        
     }
 
 }

@@ -25,6 +25,7 @@ export class HausParkComponent implements OnInit {
 
   ngOnInit() {
     this.callService() ;
+    // this.sideMap.currentlocationFind();
     this.subscription = Observable.interval(2000 * 60).subscribe(x => {
       this.callService();
     });

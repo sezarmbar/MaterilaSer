@@ -17,6 +17,7 @@ export class DirectionsMapDirective {
   constructor (private gmapsApi: GoogleMapsAPIWrapper) {
   }
   ngOnInit(){
+    console.log(this.destination);
     this.currentlocationFind();
   }
   currentlocationFind(){
@@ -26,6 +27,7 @@ export class DirectionsMapDirective {
      if(navigator.geolocation){
             navigator.geolocation.getCurrentPosition((location) => {
               this.currentPosition = {lat:location.coords.latitude,lng:location.coords.longitude};
+              
               if(!(this.destination.lat == 0.0)){
                 this.renderDirection();
               }
@@ -33,7 +35,6 @@ export class DirectionsMapDirective {
         }
    }
   renderDirection(){
-    console.log('renderDirection :'+this.destination.lat);
     this.gmapsApi.getNativeMap().then(map => {
               let directionsService = new google.maps.DirectionsService;
               var me = this;
