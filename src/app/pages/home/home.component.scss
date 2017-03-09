@@ -7,9 +7,17 @@
 .app-content md-card {
   margin: 10px;
 }
-.app-layout{
-  height: calc(100vh - 56px);
+@media (min-width: 961px) {
+  .app-layout{
+    height: calc(100vh - 64px);
+  }
 }
+@media (max-width: 960px) {
+.app-layout{
+    height: calc(100vh - 48px);
+  }
+}
+
 .app-sidenav {
   padding: 0px;
   min-width: 320px !important;
