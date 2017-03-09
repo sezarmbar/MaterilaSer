@@ -15,7 +15,7 @@ declare var google:any;
 export class HausMapComponent implements OnInit {
   @ViewChild('sidenav') sidenav: MdSidenav;
   @ViewChild(DirectionsMapDirective) directionRender;
-  @ViewChild('planRout') elPlanRout:ElementRef;
+  @ViewChild('planRoutMap') elPlanRout:ElementRef;
   showside :boolean =false;
   title: string = 'oldenburg';
   oldenburgLat: number = 53.1432439 ;

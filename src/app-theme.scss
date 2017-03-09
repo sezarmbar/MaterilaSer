@@ -1,20 +1,23 @@
 @import '~@angular/material/core/theming/all-theme';
 @import '_palette.scss';
 @import 'app/share/slider/slider.component.scss';
-@import 'app/pages/haus-park/haus-park.component.scss';
+@import 'app/pages/haus-park/haus-table/haus-table.component.scss';
+@import 'app/pages/home/home.component.scss';
+@import 'app/pages/haus-park/haus-map/haus-map.component.scss';
 // NOTE: Theming is currently experimental and not yet publically released!
 
 @include mat-core();
+  $primary: mat-palette($mat-oldemain);
+  $accent:  mat-palette($mat-amber, A200, A100, A400);
+  $warn:    mat-palette($mat-red);
+  $theme: mat-light-theme($primary, $accent,$warn);
 
-$primary: mat-palette($mat-oldemain);
-$accent:  mat-palette($mat-amber, A200, A100, A400);
-$warn:    mat-palette($mat-red);
-$theme: mat-light-theme($primary, $accent,$warn);
-
-@include angular-material-theme($theme);
-@include pic-slider-theme($theme);
-@include haus-park-theme($theme);
-
+  @include angular-material-theme($theme);
+  @include pic-slider-theme($theme);
+  @include haus-table-theme($theme);
+  @include haus-map-theme($theme);
+  @include home-theme($theme);
+  
 .m2app-dark {
   $dark-primary: mat-palette($mat-oldedark, 700, 500, 900);
   $dark-accent:  mat-palette($mat-oldedarkelm, 200, 100, 400);
@@ -24,7 +27,8 @@ $theme: mat-light-theme($primary, $accent,$warn);
   
   @include angular-material-theme($dark-theme);
   @include pic-slider-theme($dark-theme);
-  @include haus-park-theme($dark-theme);
-  
+  @include haus-table-theme($dark-theme);
+  @include haus-map-theme($dark-theme);
+  @include home-theme($dark-theme);  
 }
 

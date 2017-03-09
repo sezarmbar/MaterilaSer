@@ -3,15 +3,15 @@ import { Routes, RouterModule } from '@angular/router';
 
 
 import { HomeComponent } from './pages/home';
-import { HausParkComponent, HausMapComponent } from './pages/haus-park';
+import { HausParkComponent, HausMapComponent, HausTableComponent } from './pages/haus-park';
 
 
 
 const routes: Routes = [
     {path: '', component: HomeComponent},
     {path: 'home', component: HomeComponent},
-    {path: 'hauspark', component: HausParkComponent},    
-    {path: 'hausmap', component: HausMapComponent},    
+    {path: 'hauspark', component: HausTableComponent},
+    {path: 'hausmap', component: HausMapComponent},
     {path: '**', redirectTo: 'home', pathMatch: 'full'}
 ];
 

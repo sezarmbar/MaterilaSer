@@ -1,6 +1,6 @@
 <md-sidenav-container class="app-layout"  >
     <md-sidenav  mode="side" #sidenav > 
-    <div class="sidenavPosition">   
+    <div class="sidenavPosition" align='center'>   
         <h1>
         Oldenburg
         </h1>
@@ -12,12 +12,12 @@
       <button md-raised-button routerLink="." (click)="toAuto()" class="tocare-color" *ngIf="(addresService.autoPosition.autoPoLat)" >Zum Auto</button>
       <button md-raised-button routerLink="." (click)="resetPos()" class="tthem-color" *ngIf="(addresService.autoPosition.autoPoLat)">Reset Mein Auto Position</button>
     </div>
-    <div id="right-panel" #planRout></div>
+    <div id="right-panel" class="flexcroll" #planRoutMap></div>
     </md-sidenav>
     <button md-mini-fab class="btnOpen" (click)="closeOpenSidenave()" *ngIf="!opened"  >
       <md-icon>{{btnSideNave}}</md-icon>
     </button>
-    <sebm-google-map [latitude]="oldenburgLat"
+    <sebm-google-map class="sebm-google-map-map" [latitude]="oldenburgLat"
                         [longitude]="oldenburgLng"
                         [zoom]="zoom">
 
