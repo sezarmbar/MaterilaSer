@@ -3,11 +3,11 @@
       
       <md-tab-group #tabsEnd (selectChange)="onSelectChange($event)" [selectedIndex]="selectedIndex">
         <md-tab label="One">
-          <div style="height: calc(100vh - 5px);" (swiperight)="sidenavEnd.close()"> 
+          <div (swiperight)="sidenavEnd.close()"> 
              <div routerLink="/hausmap">
               <side-map [elPlanRout]='elPlanRout'></side-map>
             </div>
-            <div id="right-panel" #planRout></div> 
+            <div id="right-panel" class="flexcroll" #planRout></div> 
           </div>
         </md-tab>
         <md-tab label="Two" >

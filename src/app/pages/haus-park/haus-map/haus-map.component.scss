@@ -25,10 +25,27 @@
         color: mat-color($primary,default-contrast);
     }
 }
-
-
+.adp{
+    width: 320px;
+}
+@media (min-width: 961px) {
+  .app-layout{
+    height: calc(100vh - 64px);
+  }
+  .sebm-google-map-container {
+    height: calc(100vh - 64px) !important;
+  }
+}
+@media (max-width: 960px) {
+.app-layout{
+    height: calc(100vh - 48px);
+  }
+    .sebm-google-map-container {
+    height: calc(100vh - 48px) !important;
+  }
+}
 .sebm-google-map-container {
-height: 100vh !important;
+// height: 100vh !important;
 width: 100% !important;
 position: fixed !important;
 margin-bottom: 90px;
