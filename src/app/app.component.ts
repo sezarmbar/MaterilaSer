@@ -13,7 +13,7 @@ declare  var window:any;
 })
 export class AppComponent {
 
- public isDarkTheme: boolean = true;
+ public isDarkTheme: boolean = false;
  private menuSwich : boolean = false;
  private menuIcon : boolean = false;
  showShadow = true;
