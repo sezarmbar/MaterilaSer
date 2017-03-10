@@ -9,7 +9,7 @@
             </button>
       <button md-raised-button routerLink="." (click)="carePositsion()" class="tthem-color" *ngIf="!(addresService.autoPosition.autoPoLat)">Mein Auto Position</button>
 
-      <button md-raised-button routerLink="." (click)="toAuto()" class="tocare-color" *ngIf="(addresService.autoPosition.autoPoLat)" >Zum Auto</button>
+      <button md-raised-button routerLink="." (click)="toAuto()"  color="primary" *ngIf="(addresService.autoPosition.autoPoLat)" >Zum Auto</button>
       <button md-raised-button routerLink="." (click)="resetPos()" class="tthem-color" *ngIf="(addresService.autoPosition.autoPoLat)">Reset Mein Auto Position</button>
     </div>
     <div id="right-panel" class="flexcroll" #planRoutMap></div>

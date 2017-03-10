@@ -1,16 +1,17 @@
 
-  <md-toolbar color="primary" [class.mat-elevation-z6]="showShadow" role="toolbar"  >
+  <!--<app-navbar [class.mat-elevation-z6]="showShadow"></app-navbar>-->
+  <md-toolbar color="primary" role="toolbar"  >
     <button class="app-icon-button" (click)="sidenavStart.toggle()" *ngIf="!menuIcon">
       <i class="material-icons app-toolbar-menu">menu</i>
     </button>
-    Oldenburg
+   <div routerLink="/">Oldenburg</div> 
     
     <span class="app-toolbar-filler"></span>
     <div *ngIf="menuSwich">
       <button md-button routerLink="/home">Home</button>
       <button md-button routerLink="/hauspark">Park Haus</button>
-      <button md-button routerLink="/hausmap">Zum Map</button>    
-      <button md-button (click)="isDarkTheme = !isDarkTheme">DARK THEME</button>
+      <button md-button routerLink="/hausmap">Map</button>    
+      <button md-button (click)="switchThem()">DARK THEME</button>
     </div>
   </md-toolbar>
 
