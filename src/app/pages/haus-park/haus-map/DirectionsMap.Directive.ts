@@ -17,7 +17,6 @@ export class DirectionsMapDirective {
   constructor (private gmapsApi: GoogleMapsAPIWrapper) {
   }
   ngOnInit(){
-    console.log(this.destination);
     this.currentlocationFind();
   }
   currentlocationFind(){

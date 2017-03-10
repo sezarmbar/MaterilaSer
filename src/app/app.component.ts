@@ -6,7 +6,10 @@ declare  var window:any;
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
+    host: {
+    '[class.m2app-dark]': 'isDarkTheme',
+  },
 })
 export class AppComponent {
 
@@ -14,7 +17,7 @@ export class AppComponent {
  public isDarkTheme: boolean = true;
  private menuSwich : boolean = false;
  private menuIcon : boolean = false;
-
+ showShadow = true;
 //  public lastDialogResult: string;
 //  public sidenavOpen:boolean = false;
 //  private slideInit:boolean = false;
