@@ -1,6 +1,6 @@
 import {GoogleMapsAPIWrapper} from 'angular2-google-maps/core/services/google-maps-api-wrapper';
 import { Directive,  Input} from '@angular/core';
-
+// http://stackoverflow.com/questions/16222330/geolocation-moving-only-google-maps-marker-without-reload-the-map
 
 @Directive({
   selector: 'sebm-google-map-directions'
