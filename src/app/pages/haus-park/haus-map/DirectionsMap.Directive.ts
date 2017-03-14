@@ -1,6 +1,8 @@
 import {GoogleMapsAPIWrapper} from 'angular2-google-maps/core/services/google-maps-api-wrapper';
-import { Directive,  Input} from '@angular/core';
+import { Directive,  Input,NgZone } from '@angular/core';
 // http://stackoverflow.com/questions/16222330/geolocation-moving-only-google-maps-marker-without-reload-the-map
+// import { GMapsService } from '../../../service';
+import { MapsAPILoader } from 'angular2-google-maps/core';
 
 @Directive({
   selector: 'sebm-google-map-directions'
@@ -10,56 +12,35 @@ export class DirectionsMapDirective {
   @Input() destination;
   @Input() directionsDisplay:any;
   @Input() elPlanRout:any;
-  oriLat: number ;
-  oriLng: number ;
-  currentPosition: any;
-  check:boolean = false;
-  map:any;
+  public oriLat: number ;
+  public oriLng: number ;
+  public currentPosition: any;
+  public check:boolean = false;
+
   constructor (private gmapsApi: GoogleMapsAPIWrapper) {
+   
   }
   ngOnInit(){
+
     this.currentlocationFind();
-    console.log('1 : '+this.currentPosition);
   }
-  currentlocationFind(marker ?){
+
+  currentlocationFind(){
     if (!navigator.geolocation){
         console.log("<p>Geolocation is not supported by your browser</p>");
       }
-     if(navigator.geolocation){
-            navigator.geolocation.getCurrentPosition((location) => {
-              this.currentPosition = new google.maps.LatLng(location.coords.latitude,location.coords.longitude);
-              if(!(this.destination.lat == 0)){
+     if(navigator.geolocation){       
+            navigator.geolocation.getCurrentPosition(
+              (location) => {
+              this.currentPosition = {lat:location.coords.latitude,lng:location.coords.longitude};
+              if(!(this.destination.lat == 0 || this.destination.lat == undefined)){
                 this.renderDirection();
               }
             });
         }
-      this.gmapsApi.getNativeMap().then(map => {
-      // ***************************************************************************************************
-      this.map=map;
-      this.setMaker();});
    }
-  setMaker(){
-    console.log(this.map );
-    console.log('2 : '+this.currentPosition);
-    
-    var marker = new google.maps.Marker({
-                  position: this.currentPosition,
-                  title:"Hello World!",
-                  icon: new google.maps.MarkerImage('assets/mobileimgs2.png',
-                                                    new google.maps.Size(22,22),
-                                                    new google.maps.Point(0,18),
-                                                    new google.maps.Point(11,11)),
-                  shadow: null,
-                  zIndex: 999,
-              });
-              marker.setMap(this.map);
-  }
-  renderDirection(){
+    renderDirection(){
     this.gmapsApi.getNativeMap().then(map => {
-      // ***************************************************************************************************
-      this.map=map;
-      this.setMaker();
-      // ***************************************************************************************************
 
               let directionsService = new google.maps.DirectionsService;
               var me = this;
@@ -74,7 +55,7 @@ export class DirectionsMapDirective {
                 });
               this.directionsDisplay.setDirections({routes: []});
               directionsService.route({
-                      origin: this.currentPosition,
+                      origin:  {lat: this.currentPosition.lat, lng: this.currentPosition.lng},
                       destination: {lat: this.destination.lat, lng: this.destination.lng},
                       waypoints: [],
                       optimizeWaypoints: true,

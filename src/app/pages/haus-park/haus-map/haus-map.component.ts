@@ -28,23 +28,59 @@ export class HausMapComponent implements OnInit {
   btnSideNave: string='chevron_right';
   directionsDisplay:any;
   public opened:boolean = false;
+  public watchID:any;
+  public markerIcon:any;
+  public currentPosition: any;
+  public markerPos = { lat: 0.0, lng: 0.0 };
+  public styleArray = [
+    {
+      featureType: 'all',
+      stylers: [
+        { saturation: -80 }
+      ]
+    },{
+      featureType: 'road.arterial',
+      elementType: 'geometry',
+      stylers: [
+        { hue: '#00ffee' },
+        { saturation: 50 }
+      ]
+    },{
+      featureType: 'poi.business',
+      elementType: 'labels',
+      stylers: [
+        { visibility: 'off' }
+      ]
+    }
+  ];
 
   constructor(private addresService:addresShared,private mapsAPILoader:MapsAPILoader) {
     if(this.directionsDisplay === undefined){ this.mapsAPILoader.load().then(() => { 
-      this.directionsDisplay = new google.maps.DirectionsRenderer; }); }
+      this.directionsDisplay = new google.maps.DirectionsRenderer;
+      this.markerIcon = new google.maps.MarkerImage('assets/mobileimgs2.png',
+                                                    new google.maps.Size(22,22),
+                                                    new google.maps.Point(0,18),
+                                                    new google.maps.Point(11,11))
+    });
+    }
   }
    ngOnInit() {
      this.destenyInput = this.addresService.parkhausname;
      this.serchAddres();
+     this.setMaker()
    }
 
    carePositsion(){
+        navigator.geolocation.clearWatch(this.watchID);
     if (!navigator.geolocation){
         console.log("<p>Geolocation is not supported by your browser</p>");
       }
      if(navigator.geolocation){
+       
             navigator.geolocation.getCurrentPosition((location) => {
               this.autoPosition = {lat:location.coords.latitude,lng:location.coords.longitude};
+              console.log('hausMap'+this.autoPosition);
+              
               this.addresService.setAutoPosition(this.autoPosition)
             });
         }
@@ -80,4 +116,35 @@ export class HausMapComponent implements OnInit {
    }
   }
 
+   setMaker(){
+    let me=this;
+    // this.marker.setPosition(new google.maps.LatLng(
+    //                             this.destination.lat,
+    //                             this.destination.lng)
+    // );
+     if(navigator.geolocation){
+               // timeout at 60000 milliseconds (60 seconds)
+               var options = {timeout:60,enableHighAccuracy: false, maximumAge: 0};
+               this.watchID = navigator.geolocation.watchPosition(position => { 
+                                                                        me.markerPos.lat = position.coords.latitude;
+                                                                        me.markerPos.lng = position.coords.longitude;
+                                                                        console.log('hausMap Marker '+me.markerPos.lat);
+                                                                        
+                                                                    },
+                                                            err =>  {  if(err.code == 1) {
+                                                                        console.log("Error: Access is denied!");
+                                                                       }
+                                                                       else if( err.code == 2) {
+                                                                         console.log("Error: Position is unavailable!");
+                                                                       }
+                                                                    }
+                                                        , options);
+     }else{
+              console.log("Sorry, browser does not support geolocation!");
+          }
+  }
+ngOnDestroy(){
+  console.log('navigator.geolocation.clearWatch(this.watchID);');
+   navigator.geolocation.clearWatch(this.watchID);
+}
 }

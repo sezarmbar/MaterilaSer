@@ -17,15 +17,21 @@
     <button md-mini-fab class="btnOpen" (click)="closeOpenSidenave()" *ngIf="!opened"  >
       <md-icon>{{btnSideNave}}</md-icon>
     </button>
+
+    <!--Map-->
     <sebm-google-map class="sebm-google-map-map" [latitude]="oldenburgLat"
                         [longitude]="oldenburgLng"
-                        [zoom]="zoom">
-
+                        [zoom]="zoom"
+                        [styles]="styleArray">
+          <!--Marker-->
+          <sebm-google-map-marker [latitude]="markerPos.lat" [longitude]="markerPos.lng"  [iconUrl]="markerIcon">  
+          </sebm-google-map-marker> 
+          <!--Direction-->
           <sebm-google-map-directions [origin]="origin" 
                                       [destination]="destination"
                                       [directionsDisplay]="directionsDisplay"
                                       [elPlanRout]="elPlanRout">
           </sebm-google-map-directions>
-        </sebm-google-map>   
+    </sebm-google-map>   
     
 </md-sidenav-container>

@@ -17,8 +17,8 @@ export class SideMapComponent implements OnInit {
  public oldenburgLat: number = 53.1432439 ;
  public oldenburgLng: number = 8.2214212 ;
  public zoom: number = 14;
- public destLat: number ;
- public destLng: number ;
+//  public destLat: number ;
+//  public destLng: number ;
  public oriLat: number;
  public oriLng: number;
  public directionsDisplay:any;
@@ -40,8 +40,8 @@ export class SideMapComponent implements OnInit {
      for(var i =0;i<this.parkhauseAddreses.length;i++){
        let parkHaus = this.parkhauseAddreses[i];
        if(parkHaus.name===destenyInput){
-         this.destLat = Number(parkHaus.lat);
-         this.destLng = Number(parkHaus.lng);
+        //  this.destLat = Number(parkHaus.lat);
+        //  this.destLng = Number(parkHaus.lng);
          this.destination.lat = Number(parkHaus.lat);
          this.destination.lng = Number(parkHaus.lng);
        }
