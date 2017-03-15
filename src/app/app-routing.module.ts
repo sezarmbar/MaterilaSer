@@ -8,11 +8,11 @@ import { HausParkComponent, HausMapComponent, HausTableComponent } from './pages
 
 
 const routes: Routes = [
-    {path: '', component: HomeComponent},
+    {path: '', component: HausTableComponent},
     {path: 'home', component: HomeComponent},
     {path: 'hauspark', component: HausTableComponent},
     {path: 'hausmap', component: HausMapComponent},
-    {path: '**', redirectTo: 'home', pathMatch: 'full'}
+    {path: '**', redirectTo: 'hauspark', pathMatch: 'full'}
 ];
 
 @NgModule({

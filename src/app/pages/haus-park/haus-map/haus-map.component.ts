@@ -78,7 +78,6 @@ export class HausMapComponent implements OnInit {
      if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition((location) => {
               this.autoPosition = {lat: location.coords.latitude, lng: location.coords.longitude};
-              console.log('hausMap' + this.autoPosition);
               this.addresService.setAutoPosition(this.autoPosition);
             });
         }

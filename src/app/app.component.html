@@ -8,10 +8,10 @@
     
     <span class="app-toolbar-filler"></span>
     <div *ngIf="menuSwich">
-      <button md-button routerLink="/home">Home</button>
-      <button md-button routerLink="/hauspark">Park Haus</button>
+      <!--<button md-button routerLink="/home">Home</button>-->
+      <button md-button routerLink="/hauspark">ParkHaus</button>
       <button md-button routerLink="/hausmap">Map</button>    
-      <button md-button (click)="switchThem()">DARK THEME</button>
+      <button md-button (click)="switchThem()">Switch Theme</button>
     </div>
   </md-toolbar>
 
@@ -20,12 +20,12 @@
     <md-sidenav #sidenavStart  class="app-sidenav" mode="over"  tabindex="-1" align="start" >
     <div style="height: 100%" (swipeleft)="sidenavStart.close()"> 
       <md-list (click)="sidenavStart.toggle()">
-        <md-list-item> <button md-button routerLink="/home">Home</button> </md-list-item>
-        <md-list-item> <button md-button routerLink="/hauspark">Park Haus</button> </md-list-item>
-        <md-list-item> <button md-button routerLink="/hausmap">Zum Map</button> </md-list-item>
+        <!--<md-list-item> <button md-button routerLink="/home">Home</button> </md-list-item>-->
+        <md-list-item> <button md-button routerLink="/hauspark">ParkHaus</button> </md-list-item>
+        <md-list-item> <button md-button routerLink="/hausmap">Map</button> </md-list-item>
 
       </md-list>
-        <button md-button (click)="isDarkTheme = !isDarkTheme">DARK THEME</button>
+        <button md-button (click)="switchThem()">Switch Theme</button>
       </div>
     </md-sidenav>
    
@@ -38,6 +38,6 @@
 
 
 
-  <span class="app-action" [class.m2app-dark]="isDarkTheme">
+  <!--<span class="app-action" [class.m2app-dark]="isDarkTheme">
     <button md-fab><md-icon>check circle</md-icon></button>
-  </span>
+  </span>-->
