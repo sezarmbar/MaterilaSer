@@ -15,6 +15,7 @@ export class DirectionsMapDirective {
   public currentPosition: any;
   public icons:any;
   public map:any;
+  public markerArray = [];
   constructor (private gmapsApi: GoogleMapsAPIWrapper, private mapsAPILoader:MapsAPILoader) {
     this.mapsAPILoader.load().then(() => {
       this.icons = {
@@ -59,6 +60,11 @@ export class DirectionsMapDirective {
         }
    }
     renderDirection(){
+      for (let i = 0 ; i < this.markerArray.length; i++ ) {
+        this.markerArray[i].setMap(null)
+      }
+      this.markerArray = [];
+
     this.gmapsApi.getNativeMap().then(map => {
               const me = this;
               me.map = map;
@@ -86,8 +92,8 @@ export class DirectionsMapDirective {
                                 if (status === google.maps.DirectionsStatus.OK) {
                                    me.directionsDisplay.setDirections(response);
                                    var leg = response.routes[ 0 ].legs[ 0 ];
-                                   me.makeMarker( leg.start_location, me.icons.start, "title" );
-                                   me.makeMarker( leg.end_location, me.icons.end, 'title' );
+                                   me.makeMarker( leg.start_location, me.icons.start, "title",0);
+                                   me.makeMarker( leg.end_location, me.icons.end, 'title',1 );
                                 } else {
                                   window.alert('Directions request failed due to ' + status);
                                 }
@@ -95,13 +101,14 @@ export class DirectionsMapDirective {
              this.directionsDisplay.setPanel(this.elPlanRout.nativeElement);
     });
   }
-  makeMarker( position, icon, title ) {
-    new google.maps.Marker({
+  makeMarker( position, icon, title,i ) {
+   var marker = new google.maps.Marker({
       position: position,
       map: this.map,
       icon: icon,
       animation: google.maps.Animation.DROP,
       title: title
     });
+    this.markerArray[i] = marker;
   }
 }
