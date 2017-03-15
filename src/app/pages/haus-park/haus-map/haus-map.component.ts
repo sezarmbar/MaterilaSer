@@ -98,7 +98,7 @@ export class HausMapComponent implements OnInit {
    toAuto(){
       this.destination.lat = Number(this.addresService.autoPosition.autoPoLat);
       this.destination.lng = Number(this.addresService.autoPosition.autoPoLng);
-      this.directionRender.renderDirection();
+      this.directionRender.renderDirection('WALKING');
    }
   closeOpenSidenave(){
     if (this.sidenav._opened === true) {

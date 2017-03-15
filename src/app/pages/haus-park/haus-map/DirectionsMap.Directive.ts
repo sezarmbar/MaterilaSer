@@ -13,6 +13,7 @@ export class DirectionsMapDirective {
   public oriLat: number ;
   public oriLng: number ;
   public currentPosition: any;
+  public travelMode = 'DRIVING';
   public icons:any;
   public map:any;
   public markerArray = [];
@@ -59,7 +60,12 @@ export class DirectionsMapDirective {
             });
         }
    }
-    renderDirection(){
+    renderDirection(WALKING ?){
+      if (!(WALKING===undefined)) {
+       this.travelMode = WALKING;
+    }else{
+      this.travelMode = 'DRIVING';
+    }
       for (let i = 0 ; i < this.markerArray.length; i++ ) {
         this.markerArray[i].setMap(null)
       }
@@ -86,8 +92,8 @@ export class DirectionsMapDirective {
                       destination: {lat: this.destination.lat, lng: this.destination.lng},
                       waypoints: [],
                       optimizeWaypoints: true,
-                      travelMode: google.maps.DirectionsTravelMode.DRIVING
-                      // travelMode: 'DRIVING'
+                      // travelMode: google.maps.DirectionsTravelMode.DRIVING
+                      travelMode: me.travelMode
                     }, function(response, status) {
                                 if (status === google.maps.DirectionsStatus.OK) {
                                    me.directionsDisplay.setDirections(response);

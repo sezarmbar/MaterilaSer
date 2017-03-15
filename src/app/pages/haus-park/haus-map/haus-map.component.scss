@@ -54,8 +54,9 @@
     height: calc(100vh - 164px);
   }
 }
+
 .adp{
-    width: 310px !important;
+    width: 303px !important;
 }
 .sebm-google-map-map {
 // height: 100vh !important;
@@ -90,6 +91,7 @@ md-sidenav {
 //scrollbar
 .flexcroll{ overflow-y: scroll;
             width: 320px; 
+            align-content: center;
            }
 .flexcroll::-webkit-scrollbar {
     width: 6px;
