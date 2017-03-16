@@ -106,8 +106,6 @@ export class DirectionsMapDirective {
     });
   }
   makeMarker( position, icon, title,i,content ) {
-
-   
    var marker = new google.maps.Marker({
       position: position,
       map: this.map,

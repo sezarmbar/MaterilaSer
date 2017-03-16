@@ -18,13 +18,12 @@
 
   <md-sidenav-container class="app-layout"  >
     <md-sidenav #sidenavStart  class="app-sidenav" mode="over"  tabindex="-1" align="start" >
-    <div style="height: 100%" (swipeleft)="sidenavStart.close()"> 
-      <md-list (click)="sidenavStart.toggle()">
+    <div style="height: 100%" (swipeleft)="sidenavStart.close()" align="center"> 
+      <div (click)="sidenavStart.toggle()">
         <!--<md-list-item> <button md-button routerLink="/home">Home</button> </md-list-item>-->
         <md-list-item> <button md-button routerLink="/hauspark">ParkHaus</button> </md-list-item>
         <md-list-item> <button md-button routerLink="/hausmap">Map</button> </md-list-item>
-
-      </md-list>
+      </div>
         <button md-button (click)="switchThem()">Switch Theme</button>
       </div>
     </md-sidenav>
