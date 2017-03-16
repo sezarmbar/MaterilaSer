@@ -16,6 +16,7 @@ export class DirectionsMapDirective {
   public travelMode = 'DRIVING';
   public icons:any;
   public map:any;
+  public prevInfoWindows:any = false;
   public markerArray = [];
   constructor (private gmapsApi: GoogleMapsAPIWrapper, private mapsAPILoader:MapsAPILoader) {
     this.mapsAPILoader.load().then(() => {
@@ -60,18 +61,15 @@ export class DirectionsMapDirective {
             });
         }
    }
-    renderDirection(WALKING ?){
-      if (!(WALKING===undefined)) {
-       this.travelMode = WALKING;
-    }else{
-      this.travelMode = 'DRIVING';
-    }
+    renderDirection(travelMode ?){
+      if (!(travelMode === undefined)) { this.travelMode = travelMode;
+      }else { this.travelMode = 'DRIVING'; }
       for (let i = 0 ; i < this.markerArray.length; i++ ) {
         this.markerArray[i].setMap(null)
       }
       this.markerArray = [];
 
-    this.gmapsApi.getNativeMap().then(map => {
+      this.gmapsApi.getNativeMap().then(map => {
               const me = this;
               me.map = map;
               const directionsService = new google.maps.DirectionsService;
@@ -98,8 +96,8 @@ export class DirectionsMapDirective {
                                 if (status === google.maps.DirectionsStatus.OK) {
                                    me.directionsDisplay.setDirections(response);
                                    var leg = response.routes[ 0 ].legs[ 0 ];
-                                   me.makeMarker( leg.start_location, me.icons.start, "title",0);
-                                   me.makeMarker( leg.end_location, me.icons.end, 'title',1 );
+                                   me.makeMarker( leg.start_location, me.icons.start, "title",0, leg.start_address);
+                                   me.makeMarker( leg.end_location, me.icons.end, 'title',1,leg.end_address );
                                 } else {
                                   window.alert('Directions request failed due to ' + status);
                                 }
@@ -107,7 +105,9 @@ export class DirectionsMapDirective {
              this.directionsDisplay.setPanel(this.elPlanRout.nativeElement);
     });
   }
-  makeMarker( position, icon, title,i ) {
+  makeMarker( position, icon, title,i,content ) {
+
+   
    var marker = new google.maps.Marker({
       position: position,
       map: this.map,
@@ -116,5 +116,19 @@ export class DirectionsMapDirective {
       title: title
     });
     this.markerArray[i] = marker;
+    var infoWindow = new google.maps.InfoWindow({
+      content: '<div class="info_content">' + content +  '</div>'
+   });
+    google.maps.event.addListener(marker, 'click', event => {
+      if(this.prevInfoWindows) {
+        console.log(this.prevInfoWindows.content);
+        this.prevInfoWindows.close();
+      }
+       this.prevInfoWindows = infoWindow;
+       infoWindow.open(this.map, marker);
+    });
+    google.maps.event.addListener(this.map, 'click', event => {
+       infoWindow.close();
+    });
   }
 }
