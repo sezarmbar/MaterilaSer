@@ -2,7 +2,7 @@
     <md-sidenav #sidenavEnd mode="over" class="app-sidenav"  tabindex="-1" align="end" (close)="onCloseSidenavEnd()">
       
       <md-tab-group #tabsEnd (selectChange)="onSelectChange($event)" [selectedIndex]="selectedIndex">
-        <md-tab label="One">
+        <md-tab label="Karte">
           <div (swiperight)="sidenavEnd.close()" align="center">
               <h2> {{currentPark.Name | parkHausName}}</h2>
            </div>
@@ -13,7 +13,7 @@
             <div id="right-panel" class="flexcroll" #planRout></div> 
           </div>
         </md-tab>
-        <md-tab label="Two" >
+        <md-tab label="Info" >
            <table (swiperight)="sidenavEnd.close()">
               <tr>
                 <td><h1> {{currentPark.Name | parkHausName}}</h1>Letzte Aktualisierung:{{lastTime}}</td>

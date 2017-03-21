@@ -10,8 +10,10 @@
     <div *ngIf="menuSwich">
       <!--<button md-button routerLink="/home">Home</button>-->
       <button md-button routerLink="/hauspark">ParkHaus</button>
-      <button md-button routerLink="/hausmap">Map</button>    
-      <button md-button (click)="switchThem()">Switch Theme</button>
+      <button md-button routerLink="/hausmap">Karte</button>    
+      <button md-button (click)="switchThem()" *ngIf="!isDarkTheme" >Nacht-Modus</button>
+      <button md-button (click)="switchThem()" *ngIf="isDarkTheme" >Hell-Modus</button>
+
     </div>
   </md-toolbar>
 
@@ -24,7 +26,8 @@
         <md-list-item> <button md-button routerLink="/hauspark">ParkHaus</button> </md-list-item>
         <md-list-item> <button md-button routerLink="/hausmap">Map</button> </md-list-item>
       </div>
-        <button md-button (click)="switchThem()">Switch Theme</button>
+        <button md-button (click)="switchThem()" *ngIf="!isDarkTheme">Nacht-Modus</button>
+        <button md-button (click)="switchThem()" *ngIf="isDarkTheme">Hell-Modus</button>
       </div>
     </md-sidenav>
    
