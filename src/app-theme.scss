@@ -4,6 +4,7 @@
 @import 'app/pages/haus-park/haus-table/haus-table.component.scss';
 @import 'app/pages/home/home.component.scss';
 @import 'app/pages/haus-park/haus-map/haus-map.component.scss';
+@import 'app/app.component.scss';
 // NOTE: Theming is currently experimental and not yet publically released!
 
 @include mat-core();
@@ -17,7 +18,7 @@
   @include haus-table-theme($theme);
   @include haus-map-theme($theme);
   @include home-theme($theme);
-  
+  @include app-navbar-theme($theme);
 .m2app-dark {
   $dark-primary: mat-palette($mat-oldedark, 700, 500, 900);
   $dark-accent:  mat-palette($mat-oldedarkelm, 200, 100, 400);
@@ -30,5 +31,6 @@
   @include haus-table-theme($dark-theme);
   @include haus-map-theme($dark-theme);
   @include home-theme($dark-theme);  
+  @include app-navbar-theme($dark-theme);
 }
 

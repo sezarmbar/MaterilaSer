@@ -14,6 +14,7 @@ declare var google:any;
 })
 export class HausMapComponent implements OnInit {
   @ViewChild('sidenav') sidenav: MdSidenav;
+  @ViewChild('sidenavEnd') sidenavEnd: MdSidenav;
   @ViewChild(DirectionsMapDirective) directionRender;
   @ViewChild('planRoutMap') elPlanRout:ElementRef;
   public showside: boolean = false;
@@ -25,8 +26,10 @@ export class HausMapComponent implements OnInit {
   public destination = { lat: 0.0, lng: 0.0 };
   public autoPosition:any;
   public btnSideNave: string='chevron_right';
-  public directionsDisplay:any;
   public opened:boolean = false;
+  public btnSideNaveEnd: string='chevron_left';
+  public openedEnd:boolean = false;  
+  public directionsDisplay:any;
   public watchID:any;
   public markerIcon:any;
   public currentPosition: any;
@@ -54,7 +57,7 @@ export class HausMapComponent implements OnInit {
     }
   ];
 
-  constructor(private addresService: addresShared, private mapsAPILoader:MapsAPILoader) {
+  constructor(private addresService: addresShared, private mapsAPILoader:MapsAPILoader,private parkingsService:ParkingsService) {
     if (this.directionsDisplay === undefined) { this.mapsAPILoader.load().then(() => {
       this.directionsDisplay = new google.maps.DirectionsRenderer;
       this.markerIcon = new google.maps.MarkerImage('assets/mobileimgs2.png',
@@ -65,6 +68,7 @@ export class HausMapComponent implements OnInit {
     }
   }
    ngOnInit() {
+     this.getParksFBehinderte() 
      this.destenyInput = this.addresService.parkhausname;
      this.serchAddres();
      this.setMaker();
@@ -113,6 +117,19 @@ export class HausMapComponent implements OnInit {
    }
   }
 
+  closeOpenSidenaveEnd(){
+    if (this.sidenavEnd._opened === true) {
+      this.openedEnd =  false;
+      this.sidenavEnd.close();
+      this.btnSideNaveEnd = 'chevron_left';
+   }
+   if (this.sidenavEnd._isClosed === true) {
+      this.openedEnd =  true;
+     this.sidenavEnd.open();
+     this.btnSideNaveEnd = 'chevron_right';
+   }
+  }
+
    setMaker(){
     let me = this;
      if (navigator.geolocation){
@@ -133,6 +150,13 @@ export class HausMapComponent implements OnInit {
               console.log('Sorry, browser does not support geolocation!');
           }
   }
+
+
+  getParksFBehinderte() {
+    this.parkingsService.getParksFBehinderte();
+  }
+
+
   ngOnDestroy() {
    navigator.geolocation.clearWatch(this.watchID);
   }

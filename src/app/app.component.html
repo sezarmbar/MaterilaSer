@@ -1,6 +1,7 @@
 
   <!--<app-navbar [class.mat-elevation-z6]="showShadow"></app-navbar>-->
-  <md-toolbar color="primary" role="toolbar"  >
+
+  <!--<md-toolbar color="primary" role="toolbar"  >
     <button class="app-icon-button" (click)="sidenavStart.toggle()" *ngIf="!menuIcon">
       <i class="material-icons app-toolbar-menu">menu</i>
     </button>
@@ -8,15 +9,24 @@
     
     <span class="app-toolbar-filler"></span>
     <div *ngIf="menuSwich">
-      <!--<button md-button routerLink="/home">Home</button>-->
+   
       <button md-button routerLink="/hauspark">ParkHaus</button>
       <button md-button routerLink="/hausmap">Karte</button>    
       <button md-button (click)="switchThem()" *ngIf="!isDarkTheme" >Nacht-Modus</button>
       <button md-button (click)="switchThem()" *ngIf="isDarkTheme" >Hell-Modus</button>
 
     </div>
-  </md-toolbar>
-
+  </md-toolbar>-->
+<ul>
+  <li *ngIf="!menuIcon"(click)="sidenavStart.toggle()" ><a><i class="material-icons app-toolbar-menu" >menu</i></a></li>
+  <li><a routerLink="/" style="font-size: 2em; margin-top: -9px"  >Oldenburg</a></li>
+  <div class="navbar-style" *ngIf="menuSwich">
+  <li><a routerLink="/hauspark">ParkHaus</a></li>
+  <li><a routerLink="/hausmap" >Karte</a></li>
+  <li *ngIf="!isDarkTheme"><a  (click)="switchThem()" >Nacht-Modus</a></li>
+  <li *ngIf="isDarkTheme"><a  (click)="switchThem()">Hell-Modus</a></li>
+  </div>
+</ul>
 
   <md-sidenav-container class="app-layout"  >
     <md-sidenav #sidenavStart  class="app-sidenav" mode="over"  tabindex="-1" align="start" >
