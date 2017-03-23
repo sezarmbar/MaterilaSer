@@ -35,6 +35,8 @@ export class HausMapComponent implements OnInit {
   public currentPosition: any;
   public markerPos = { lat: 0.0, lng: 0.0 };
   public wakeLock;
+  private parksFBehindertes:any ;
+  private infoMarker:any ;
   public styleArray = [
     {
       featureType: 'all',
@@ -68,7 +70,7 @@ export class HausMapComponent implements OnInit {
     }
   }
    ngOnInit() {
-     this.getParksFBehinderte() 
+     this.getParksFBehinderte() ;
      this.destenyInput = this.addresService.parkhausname;
      this.serchAddres();
      this.setMaker();
@@ -153,9 +155,24 @@ export class HausMapComponent implements OnInit {
 
 
   getParksFBehinderte() {
-    this.parkingsService.getParksFBehinderte();
+
+    this.parkingsService.getParksFBehinderte().subscribe(
+      (parkings) => {
+        this.parksFBehindertes = parkings;
+      //   for(let marker of parkings ) {
+      //    marker.isOpen = 'false';
+      //    this.parksFBehindertes.prop = marker
+      //  }
+      });
   }
 
+  getInfoMarker(id){
+     this.parkingsService.getInfoMarker(id).subscribe(
+      (infoMarker) => {
+        this.infoMarker = infoMarker;
+        console.log(infoMarker);
+      });
+  }
 
   ngOnDestroy() {
    navigator.geolocation.clearWatch(this.watchID);

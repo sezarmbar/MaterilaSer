@@ -41,6 +41,16 @@
                         [styles]="styleArray">
           <!--Marker-->
           <sebm-google-map-marker [latitude]="markerPos.lat" [longitude]="markerPos.lng"  [iconUrl]="markerIcon">  
+          </sebm-google-map-marker>
+
+           <!--parksFBehindertes-->
+           <sebm-google-map-marker *ngFor="let pFB of parksFBehindertes; let i = index" 
+                                    [latitude]="pFB.lat" [longitude]="pFB.lon"  [iconUrl]="pFB.file"
+                                    (markerClick)="getInfoMarker(pFB.id)">  
+
+              <sebm-google-map-info-window [disableAutoPan]="true" >
+                     Hi, this is the content of the <strong>info window</strong>
+              </sebm-google-map-info-window>
           </sebm-google-map-marker> 
           <!--Direction-->
           <sebm-google-map-directions [origin]="origin" 
