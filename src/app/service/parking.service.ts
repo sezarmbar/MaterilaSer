@@ -4,6 +4,9 @@ import {Http, Headers, Response, URLSearchParams} from '@angular/http';
 import 'rxjs/Rx';
 import { ReplaySubject } from 'rxjs';
 import { Observable } from 'rxjs/Observable';
+
+import { Markers } from './markers';
+
 declare var xml2json: any;
 
 
@@ -58,7 +61,16 @@ export class ParkingsService   implements OnInit  {
     params.set('_', reqParam._);
 
    return this.http.get(this.markerUrl, { search: params })
-    .map((res: Response) => res.json())
+    .map((res: Response) => {
+      var markers: Markers[] = [];
+      let marker: Markers;
+      // const markers :Markers[]=res.json(); return markers;
+      for (let obj of res.json()) {
+        marker = new Markers(obj.ukat, obj.lat, obj.lon, obj.id, obj.file);
+        markers.push(marker);
+      }
+      return markers;
+    })
     .catch(this.handleError);
 
   }
@@ -66,7 +78,7 @@ export class ParkingsService   implements OnInit  {
 
 
   getInfoMarker(id) {
-    let reqParam = {
+    const reqParam = {
       mandant: 'oldenburg',
       functionId: '5',
       markerId: id,
@@ -81,10 +93,10 @@ export class ParkingsService   implements OnInit  {
     params.set('_', reqParam._);
 
    return this.http.get(this.infoMarkerUrl, { search: params })
-    .map((res: Response) => res.json())
+    .map((res: Response) => res.text())
     .catch(this.handleError);
 
   }
 
- 
+
 }

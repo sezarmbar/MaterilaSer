@@ -1,63 +1,58 @@
 <md-sidenav-container class="app-layout"  >
-    <md-sidenav  mode="side" #sidenav > 
-    <div class="sidenavPosition" align='center'>   
-        <h1>
+    <md-sidenav  mode="side" #sidenav >
+        <div class="sidenavPosition" align='center'>
+            <h1>
         Oldenburg
         </h1>
             <button md-mini-fab class="btnclose" (click)="closeOpenSidenave()"  *ngIf="opened">
-              <md-icon>{{btnSideNave}}</md-icon>
+                <md-icon>{{btnSideNave}}</md-icon>
             </button>
-      <button md-raised-button routerLink="." (click)="carePositsion()" class="tthem-color" *ngIf="!(addresService.autoPosition.autoPoLat)">Mein Auto Position</button>
-
-      <button md-raised-button routerLink="." (click)="toAuto()"  color="primary" *ngIf="(addresService.autoPosition.autoPoLat)" >Zum Auto</button>
-      <button md-raised-button routerLink="." (click)="resetPos()" class="tthem-color" *ngIf="(addresService.autoPosition.autoPoLat)">Reset Mein Auto Position</button>
-    </div>
-    <div id="right-panel" class="flexcroll" #planRoutMap></div>
+            <button md-raised-button routerLink="." (click)="carePositsion()" class="tthem-color" *ngIf="!(addresService.autoPosition.autoPoLat)">Mein Auto Position</button>
+            <button md-raised-button routerLink="." (click)="toAuto()"  color="primary" *ngIf="(addresService.autoPosition.autoPoLat)" >Zum Auto</button>
+            <button md-raised-button routerLink="." (click)="resetPos()" class="tthem-color" *ngIf="(addresService.autoPosition.autoPoLat)">Reset Mein Auto Position</button>
+        </div>
+        <div id="right-panel" class="flexcroll" #planRoutMap></div>
     </md-sidenav>
-
-    <md-sidenav  mode="side" #sidenavEnd align="end"> 
-      <div class="app-layout" align='center'(swiperight)="closeOpenSidenaveEnd()">   
-          <h1>
+    <md-sidenav  mode="side" #sidenavEnd align="end">
+        <div class="app-layout" align='center'(swiperight)="closeOpenSidenaveEnd()">
+            <h1>
           Oldenburg
           </h1>
-          <md-checkbox class="example-margin" [(ngModel)]="checked">Parkplätze für Behinderte</md-checkbox>
-      </div>
-       <button md-mini-fab class="btncloseEnd" (click)="closeOpenSidenaveEnd()"  *ngIf="openedEnd">
-         <md-icon>{{btnSideNave}}</md-icon>
-       </button>
+            <md-checkbox class="example-margin" [(ngModel)]="parksFBehindertesShow">Parkplätze für Behinderte</md-checkbox>
+        </div>
+        <button md-mini-fab class="btncloseEnd" (click)="closeOpenSidenaveEnd()"  *ngIf="openedEnd">
+            <md-icon>{{btnSideNave}}</md-icon>
+        </button>
     </md-sidenav>
-
     <button md-mini-fab class="btnOpen" (click)="closeOpenSidenave()" *ngIf="!opened"  >
-      <md-icon>{{btnSideNave}}</md-icon>
+        <md-icon>{{btnSideNave}}</md-icon>
     </button>
     <button md-mini-fab class="btnOpenEnd" (click)="closeOpenSidenaveEnd()" *ngIf="!openedEnd"  >
-      <md-icon>{{btnSideNaveEnd}}</md-icon>
+        <md-icon>{{btnSideNaveEnd}}</md-icon>
     </button>
-
     <!--Map-->
     <sebm-google-map class="sebm-google-map-map" [latitude]="markerPos.lat"
                         [longitude]="markerPos.lng"
                         [zoom]="zoom"
-                        [styles]="styleArray">
-          <!--Marker-->
-          <sebm-google-map-marker [latitude]="markerPos.lat" [longitude]="markerPos.lng"  [iconUrl]="markerIcon">  
-          </sebm-google-map-marker>
-
-           <!--parksFBehindertes-->
-           <sebm-google-map-marker *ngFor="let pFB of parksFBehindertes; let i = index" 
+                        [styles]="styleArray"
+                        (mapClick)="mapClicked($event)">
+        <!--Marker-->
+        <sebm-google-map-marker [latitude]="markerPos.lat" [longitude]="markerPos.lng"  [iconUrl]="markerIcon"></sebm-google-map-marker>
+        <!--parksFBehindertes-->
+        <div *ngIf="parksFBehindertesShow" >
+            <sebm-google-map-marker *ngFor="let pFB of parksFBehindertes; let i = index" 
                                     [latitude]="pFB.lat" [longitude]="pFB.lon"  [iconUrl]="pFB.file"
-                                    (markerClick)="getInfoMarker(pFB.id)">  
-
-              <sebm-google-map-info-window [disableAutoPan]="true" >
-                     Hi, this is the content of the <strong>info window</strong>
-              </sebm-google-map-info-window>
-          </sebm-google-map-marker> 
-          <!--Direction-->
-          <sebm-google-map-directions [origin]="origin" 
+                                    (markerClick)="getInfoMarker(pFB.id,infowindow)">
+                <sebm-google-map-info-window #infowindow [disableAutoPan]="true">
+                    <div [innerHTML]="infoMarker"></div>
+                    <button md-raised-button (click)="markInfoClicked(pFB)">Fahrren</button>
+                </sebm-google-map-info-window>
+            </sebm-google-map-marker>
+        </div>
+        <!--Direction-->
+        <sebm-google-map-directions [origin]="origin" 
                                       [destination]="destination"
                                       [directionsDisplay]="directionsDisplay"
-                                      [elPlanRout]="elPlanRout">
-          </sebm-google-map-directions>
-    </sebm-google-map>   
-    
+                                      [elPlanRout]="elPlanRout"></sebm-google-map-directions>
+    </sebm-google-map>
 </md-sidenav-container>

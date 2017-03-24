@@ -1,12 +1,12 @@
 import { Component, ViewChild, ViewContainerRef, ElementRef, OnInit} from '@angular/core';
 import {MdSidenav, MdDialog, MdDialogConfig} from "@angular/material";
-import {MapsAPILoader} from 'angular2-google-maps/core';
+import {MapsAPILoader,SebmGoogleMapInfoWindow} from 'angular2-google-maps/core';
 import { ParkingsService , addresShared , ADDRESES } from '../../../service';
 
 import { DirectionsMapDirective } from './DirectionsMap.Directive';
 
 declare var google:any;
-
+// http://gis4oldenburg.oldenburg.de/?es=C12S77
 @Component({
   selector: 'app-haus-map',
   templateUrl: './haus-map.component.html',
@@ -36,7 +36,11 @@ export class HausMapComponent implements OnInit {
   public markerPos = { lat: 0.0, lng: 0.0 };
   public wakeLock;
   private parksFBehindertes:any ;
+  private parksFBehindertesShow:boolean = true;
   private infoMarker:any ;
+  private lastclickedMarker:any;
+  isClicked: boolean;
+  lastClicked: SebmGoogleMapInfoWindow;
   public styleArray = [
     {
       featureType: 'all',
@@ -157,23 +161,35 @@ export class HausMapComponent implements OnInit {
   getParksFBehinderte() {
 
     this.parkingsService.getParksFBehinderte().subscribe(
-      (parkings) => {
-        this.parksFBehindertes = parkings;
-      //   for(let marker of parkings ) {
-      //    marker.isOpen = 'false';
-      //    this.parksFBehindertes.prop = marker
-      //  }
+      (markers) => {
+        this.parksFBehindertes = markers;
       });
   }
 
-  getInfoMarker(id){
-     this.parkingsService.getInfoMarker(id).subscribe(
+  getInfoMarker(id,infoWindow){
+
+   this.parkingsService.getInfoMarker(id).subscribe(
       (infoMarker) => {
         this.infoMarker = infoMarker;
-        console.log(infoMarker);
       });
-  }
+   if (this.lastClicked && this.lastClicked !== infoWindow){
+         this.lastClicked.close();
+    }
+    this.lastClicked = infoWindow;
 
+  }
+  markInfoClicked(event) {
+    console.log(event);
+    this.parksFBehindertesShow = false;
+    
+  }
+ mapClicked($event) {
+    this.isClicked = false;
+    if(this.lastClicked) {
+       this.lastClicked.close();
+       this.lastClicked = null;
+    }
+  }
   ngOnDestroy() {
    navigator.geolocation.clearWatch(this.watchID);
   }
