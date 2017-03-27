@@ -18,10 +18,12 @@
             <h1>
           Oldenburg
           </h1>
-            <md-checkbox class="example-margin" [(ngModel)]="parksFBehindertesShow">Parkplätze für Behinderte</md-checkbox>
-            <md-checkbox class="example-margin" [(ngModel)]="freiParkPlatzShow">Parkplätze kostenfrei</md-checkbox>
-            <md-checkbox class="example-margin" [(ngModel)]="parkPlatzShow">Parkplätze </md-checkbox>
-            <md-checkbox class="example-margin" [(ngModel)]="ParkHauseShow">Parkhäuser </md-checkbox>
+          <md-list>          
+              <md-list-item><md-checkbox class="example-margin" [(ngModel)]="parksFBehindertesShow">Parkplätze für Behinderte</md-checkbox></md-list-item>
+              <md-list-item><md-checkbox class="example-margin" [(ngModel)]="freiParkPlatzShow">Parkplätze kostenfrei</md-checkbox></md-list-item>
+              <md-list-item><md-checkbox class="example-margin" [(ngModel)]="parkPlatzShow">Parkplätze </md-checkbox></md-list-item>
+              <md-list-item><md-checkbox class="example-margin" [(ngModel)]="ParkHauseShow">Parkhäuser </md-checkbox></md-list-item>
+          </md-list>
         </div>
         <button md-mini-fab class="btncloseEnd" (click)="closeOpenSidenaveEnd()"  *ngIf="openedEnd">
             <md-icon>{{btnSideNave}}</md-icon>
