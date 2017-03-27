@@ -45,7 +45,7 @@
                                     (markerClick)="getInfoMarker(pFB.id,infowindow)">
                 <sebm-google-map-info-window #infowindow [disableAutoPan]="true">
                     <div [innerHTML]="infoMarker"></div>
-                    <button md-raised-button (click)="markInfoClicked(pFB)">Fahrren</button>
+                    <button md-raised-button (click)="toCurrentMarker(pFB)">Fahrren</button>
                 </sebm-google-map-info-window>
             </sebm-google-map-marker>
         </div>
@@ -53,6 +53,7 @@
         <sebm-google-map-directions [origin]="origin" 
                                       [destination]="destination"
                                       [directionsDisplay]="directionsDisplay"
-                                      [elPlanRout]="elPlanRout"></sebm-google-map-directions>
+                                      [elPlanRout]="elPlanRout"
+                                      [infoMarker]="infoMarker"></sebm-google-map-directions>
     </sebm-google-map>
 </md-sidenav-container>

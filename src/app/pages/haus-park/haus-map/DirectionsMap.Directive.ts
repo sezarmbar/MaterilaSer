@@ -8,6 +8,7 @@ import { MapsAPILoader } from 'angular2-google-maps/core';
 export class DirectionsMapDirective {
   @Input() origin;
   @Input() destination;
+  @Input() infoMarker;
   @Input() directionsDisplay:any;
   @Input() elPlanRout:any;
   public oriLat: number ;
@@ -97,7 +98,9 @@ export class DirectionsMapDirective {
                                    me.directionsDisplay.setDirections(response);
                                    var leg = response.routes[ 0 ].legs[ 0 ];
                                    me.makeMarker( leg.start_location, me.icons.start, "title",0, leg.start_address);
-                                   me.makeMarker( leg.end_location, me.icons.end, 'title',1,leg.end_address );
+                                   let infoMarker;
+                                   if(me.infoMarker){infoMarker = me.infoMarker}else{infoMarker =leg.end_address }
+                                   me.makeMarker( leg.end_location, me.icons.end, 'title',1,infoMarker );
                                 } else {
                                   window.alert('Directions request failed due to ' + status);
                                 }
@@ -119,7 +122,6 @@ export class DirectionsMapDirective {
    });
     google.maps.event.addListener(marker, 'click', event => {
       if(this.prevInfoWindows) {
-        console.log(this.prevInfoWindows.content);
         this.prevInfoWindows.close();
       }
        this.prevInfoWindows = infoWindow;
