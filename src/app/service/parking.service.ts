@@ -5,7 +5,7 @@ import 'rxjs/Rx';
 import { ReplaySubject } from 'rxjs';
 import { Observable } from 'rxjs/Observable';
 
-import { Markers } from './markers';
+import { Markers,Strassensperrung } from './index';
 
 declare var xml2json: any;
 
@@ -14,6 +14,7 @@ declare var xml2json: any;
 export class ParkingsService implements OnInit {
   markerUrl = 'http://gis4oldenburg.oldenburg.de/viewer/php/getmarker.php';
   infoMarkerUrl = 'http://gis4oldenburg.oldenburg.de/viewer/php/ajax_control.php';
+  ajax_control ='http://gis4oldenburg.oldenburg.de/viewer/php/ajax_control.php'
   constructor(private http: Http) { }
   ngOnInit() { }
 
@@ -205,5 +206,35 @@ getParkHause() {
 
   }
 
+
+getStrassensperrung() {
+      let reqParam = {
+      functionId:'4',
+      catId:'388',
+      gtyp:'2',
+      mandant:'oldenburg',
+      _: '',
+    };
+    const params = new URLSearchParams();
+    params.set('mandant', reqParam.mandant);
+    params.set('functionId', reqParam.functionId);
+    params.set('catId', reqParam.catId);
+    params.set('gtyp', reqParam.gtyp);
+    params.set('_', reqParam._);
+
+    return this.http.get(this.ajax_control, { search: params })
+      .map((res: Response) => {        
+        var lines: Strassensperrung[] = [];
+        let line: Strassensperrung;
+        // const markers :Markers[]=res.json(); return markers;
+        for (let obj of res.json()) {
+                console.log('lines[i].id');
+                  line = new Strassensperrung(obj.gtyp, obj.id, obj.pos, obj.stcolor, obj.stopacity, obj.stweight);
+                  lines.push(line);
+        }
+        return lines;
+      })
+      .catch(this.handleError);
+  }
 
 }

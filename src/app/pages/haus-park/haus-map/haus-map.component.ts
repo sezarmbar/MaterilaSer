@@ -43,6 +43,7 @@ export class HausMapComponent implements OnInit {
   private freiParkPlatzShow: boolean = false;
   private ParkHauseShow: boolean = false;
   private parkPlatzShow: boolean = false;
+  private strassensperrungShow: boolean = false;
   private infoMarker: any;
   private lastclickedMarker: any;
   private currentMarkerId: any;
@@ -87,6 +88,7 @@ export class HausMapComponent implements OnInit {
     this.getFreiParkPlatz();
     this.getParkPlatz();
     this.getParkHause();
+    this. getStrassensperrung();
     this.destenyInput = this.addresService.parkhausname;
     this.serchAddres();
     this.setMaker();
@@ -172,7 +174,6 @@ export class HausMapComponent implements OnInit {
   getParkPlatz() {
     this.parkingsService.getParkPlatz().subscribe(
       (markers) => {
-        console.log(markers);
         this.parkPlatz = markers;
       });
   }
@@ -193,6 +194,12 @@ export class HausMapComponent implements OnInit {
     this.parkingsService.getParkHause().subscribe(
       (markers) => {
         this.parkHause = markers;
+      });
+  }
+  getStrassensperrung(){
+    this.parkingsService.getStrassensperrung().subscribe(
+      (lines) => {
+        console.log(lines);
       });
   }
   chckeMrkerGroup(){
@@ -224,6 +231,7 @@ export class HausMapComponent implements OnInit {
     this.freiParkPlatzShow = false;
     this.parkPlatzShow = false;
   }
+  
   mapClicked($event) {
     this.isClicked = false;
     if (this.lastClicked) {
