@@ -21,6 +21,7 @@
             <md-checkbox class="example-margin" [(ngModel)]="parksFBehindertesShow">Parkplätze für Behinderte</md-checkbox>
             <md-checkbox class="example-margin" [(ngModel)]="freiParkPlatzShow">Parkplätze kostenfrei</md-checkbox>
             <md-checkbox class="example-margin" [(ngModel)]="parkPlatzShow">Parkplätze </md-checkbox>
+            <md-checkbox class="example-margin" [(ngModel)]="ParkHauseShow">Parkhäuser </md-checkbox>
         </div>
         <button md-mini-fab class="btncloseEnd" (click)="closeOpenSidenaveEnd()"  *ngIf="openedEnd">
             <md-icon>{{btnSideNave}}</md-icon>
@@ -70,6 +71,17 @@
                 <sebm-google-map-info-window #infowindow [disableAutoPan]="true">
                     <div [innerHTML]="infoMarker"></div>
                     <button md-raised-button (click)="toCurrentMarker(pP)">Fahrren</button>
+                </sebm-google-map-info-window>
+            </sebm-google-map-marker>
+        </div>
+        <!--ParkHause-->
+        <div *ngIf="ParkHauseShow" >
+            <sebm-google-map-marker *ngFor="let pH of parkHause; let i = index" 
+                                    [latitude]="pH.lat" [longitude]="pH.lon"  [iconUrl]="pH.file"
+                                    (markerClick)="getInfoMarker(pH.id,infowindow,pH.ukat)">
+                <sebm-google-map-info-window #infowindow [disableAutoPan]="true">
+                    <div [innerHTML]="infoMarker"></div>
+                    <button md-raised-button (click)="toCurrentMarker(pH)">Fahrren</button>
                 </sebm-google-map-info-window>
             </sebm-google-map-marker>
         </div>

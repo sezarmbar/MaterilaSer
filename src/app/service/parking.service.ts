@@ -148,7 +148,42 @@ getParkPlatz() {
       .catch(this.handleError);
   }
 
+getParkHause() {
+      let reqParam = {
+      mandant: 'oldenburg',
+      ukat: '77',
+      mids: '',
+      bbox: '8.188923597335815,53.1497860033164,8.231903314590454,53.136941114903514',
+      width: '2003',
+      height: '998',
+      z: '16',
+      cluster: '1',
+      _: '',
+    };
+    const params = new URLSearchParams();
+    params.set('mandant', reqParam.mandant);
+    params.set('ukat', reqParam.ukat);
+    params.set('mids', reqParam.mids);
+    params.set('bbox', reqParam.bbox);
+    params.set('width', reqParam.width);
+    params.set('height', reqParam.height);
+    params.set('z', reqParam.z);
+    params.set('cluster', reqParam.cluster);
+    params.set('_', reqParam._);
 
+    return this.http.get(this.markerUrl, { search: params })
+      .map((res: Response) => {
+        var markers: Markers[] = [];
+        let marker: Markers;
+        // const markers :Markers[]=res.json(); return markers;
+        for (let obj of res.json()) {
+          marker = new Markers(obj.ukat, obj.lat, obj.lon, obj.id, obj.file);
+          markers.push(marker);
+        }
+        return markers;
+      })
+      .catch(this.handleError);
+  }
   getInfoMarker(id) {
     const reqParam = {
       mandant: 'oldenburg',

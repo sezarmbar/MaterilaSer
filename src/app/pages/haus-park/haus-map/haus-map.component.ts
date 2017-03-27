@@ -38,8 +38,10 @@ export class HausMapComponent implements OnInit {
   private parksFBehindertes: any;
   private freiParkPlatz: any;
   private parkPlatz: any;
+  private parkHause: any;
   private parksFBehindertesShow: boolean = false;
   private freiParkPlatzShow: boolean = false;
+  private ParkHauseShow: boolean = false;
   private parkPlatzShow: boolean = false;
   private infoMarker: any;
   private lastclickedMarker: any;
@@ -84,6 +86,7 @@ export class HausMapComponent implements OnInit {
     this.getParksFBehinderte();
     this.getFreiParkPlatz();
     this.getParkPlatz();
+    this.getParkHause();
     this.destenyInput = this.addresService.parkhausname;
     this.serchAddres();
     this.setMaker();
@@ -186,16 +189,24 @@ export class HausMapComponent implements OnInit {
         this.parksFBehindertes = markers;
       });
   }
+  getParkHause() {
+    this.parkingsService.getParkHause().subscribe(
+      (markers) => {
+        this.parkHause = markers;
+      });
+  }
   chckeMrkerGroup(){
     if(!(this.parksFBehindertesShow) && this.lastUkat == 364 ){ this.lastClicked = null;}
     if(!(this.freiParkPlatzShow) && this.lastUkat == 78){ this.lastClicked = null;}
+    if(!(this.ParkHauseShow) && this.lastUkat == 77){ this.lastClicked = null;}
     if(!(this.parkPlatzShow) && this.lastUkat == 14){ this.lastClicked = null;}
   }
   getInfoMarker(id, infoWindow, ukat) {
     this.chckeMrkerGroup();
     this.parkingsService.getInfoMarker(id).subscribe(
       (infoMarker) => {
-        this.infoMarker = infoMarker;
+        // this.infoMarker = infoMarker.replace(/<{1}[^<>]{1,}>{1}/g," ");
+        this.infoMarker = infoMarker.replace(/<\/title>$/);
       });
     if (this.lastClicked && this.lastClicked !== infoWindow ) {
       this.lastClicked.close();
