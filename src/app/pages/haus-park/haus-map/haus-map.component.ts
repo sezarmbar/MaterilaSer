@@ -36,10 +36,15 @@ export class HausMapComponent implements OnInit {
   public markerPos = { lat: 0.0, lng: 0.0 };
   public wakeLock;
   private parksFBehindertes: any;
+  private freiParkPlatz: any;
+  private parkPlatz: any;
   private parksFBehindertesShow: boolean = false;
+  private freiParkPlatzShow: boolean = false;
+  private parkPlatzShow: boolean = false;
   private infoMarker: any;
   private lastclickedMarker: any;
   private currentMarkerId: any;
+  private lastUkat:number;
   isClicked: boolean;
   lastClicked: SebmGoogleMapInfoWindow;
   public styleArray = [
@@ -77,6 +82,8 @@ export class HausMapComponent implements OnInit {
   }
   ngOnInit() {
     this.getParksFBehinderte();
+    this.getFreiParkPlatz();
+    this.getParkPlatz();
     this.destenyInput = this.addresService.parkhausname;
     this.serchAddres();
     this.setMaker();
@@ -159,31 +166,42 @@ export class HausMapComponent implements OnInit {
       console.log('Sorry, browser does not support geolocation!');
     }
   }
-
+  getParkPlatz() {
+    this.parkingsService.getParkPlatz().subscribe(
+      (markers) => {
+        console.log(markers);
+        this.parkPlatz = markers;
+      });
+  }
+  getFreiParkPlatz() {
+    this.parkingsService.getFreiParkPlatz().subscribe(
+      (markers) => {
+        this.freiParkPlatz = markers;
+      });
+  }
 
   getParksFBehinderte() {
-
     this.parkingsService.getParksFBehinderte().subscribe(
       (markers) => {
         this.parksFBehindertes = markers;
       });
   }
-
-  getInfoMarker(id, infoWindow) {
+  chckeMrkerGroup(){
+    if(!(this.parksFBehindertesShow) && this.lastUkat == 364 ){ this.lastClicked = null;}
+    if(!(this.freiParkPlatzShow) && this.lastUkat == 78){ this.lastClicked = null;}
+    if(!(this.parkPlatzShow) && this.lastUkat == 14){ this.lastClicked = null;}
+  }
+  getInfoMarker(id, infoWindow, ukat) {
+    this.chckeMrkerGroup();
     this.parkingsService.getInfoMarker(id).subscribe(
       (infoMarker) => {
         this.infoMarker = infoMarker;
       });
-  
     if (this.lastClicked && this.lastClicked !== infoWindow ) {
-      console.log(this.parksFBehindertesShow);
-      console.log('this.parksFBehindertesShow');
-      if(this.parksFBehindertesShow){
       this.lastClicked.close();
-    }}
-    if(this.parksFBehindertesShow){
-    this.lastClicked = infoWindow;
     }
+    this.lastClicked = infoWindow;
+    this.lastUkat = ukat;
   }
   toCurrentMarker(marker) {
     this.currentMarkerId = marker.id;
@@ -192,6 +210,8 @@ export class HausMapComponent implements OnInit {
     this.directionRender.renderDirection();
     this.lastClicked = null;
     this.parksFBehindertesShow = false;
+    this.freiParkPlatzShow = false;
+    this.parkPlatzShow = false;
   }
   mapClicked($event) {
     this.isClicked = false;

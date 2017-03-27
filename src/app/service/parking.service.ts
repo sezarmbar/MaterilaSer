@@ -1,5 +1,5 @@
-import {Injectable, OnInit} from '@angular/core';
-import {Http, Headers, Response, URLSearchParams} from '@angular/http';
+import { Injectable, OnInit } from '@angular/core';
+import { Http, Headers, Response, URLSearchParams } from '@angular/http';
 // import {Observable} from "rxjs/Rx";
 import 'rxjs/Rx';
 import { ReplaySubject } from 'rxjs';
@@ -11,18 +11,18 @@ declare var xml2json: any;
 
 
 @Injectable()
-export class ParkingsService   implements OnInit  {
+export class ParkingsService implements OnInit {
   markerUrl = 'http://gis4oldenburg.oldenburg.de/viewer/php/getmarker.php';
   infoMarkerUrl = 'http://gis4oldenburg.oldenburg.de/viewer/php/ajax_control.php';
   constructor(private http: Http) { }
-  ngOnInit() {}
+  ngOnInit() { }
 
   getParks() {
-  return this.http.get('assets/pls.xml')
-    .map(res => JSON.parse(xml2json(res.text(), '  ')));
+    return this.http.get('assets/pls.xml')
+      .map(res => JSON.parse(xml2json(res.text(), '  ')));
   }
-  private handleError (error: Response | any) {
-   console.log('ERROR WITH REQUEST');
+  private handleError(error: Response | any) {
+    console.log('ERROR WITH REQUEST');
     // In a real world app, you might use a remote logging infrastructure
     let errMsg: string;
     if (error instanceof Response) {
@@ -60,21 +60,93 @@ export class ParkingsService   implements OnInit  {
     params.set('cluster', reqParam.cluster);
     params.set('_', reqParam._);
 
-   return this.http.get(this.markerUrl, { search: params })
-    .map((res: Response) => {
-      var markers: Markers[] = [];
-      let marker: Markers;
-      // const markers :Markers[]=res.json(); return markers;
-      for (let obj of res.json()) {
-        marker = new Markers(obj.ukat, obj.lat, obj.lon, obj.id, obj.file);
-        markers.push(marker);
-      }
-      return markers;
-    })
-    .catch(this.handleError);
+    return this.http.get(this.markerUrl, { search: params })
+      .map((res: Response) => {
+        var markers: Markers[] = [];
+        let marker: Markers;
+        // const markers :Markers[]=res.json(); return markers;
+        for (let obj of res.json()) {
+          marker = new Markers(obj.ukat, obj.lat, obj.lon, obj.id, obj.file);
+          markers.push(marker);
+        }
+        return markers;
+      })
+      .catch(this.handleError);
 
   }
+  getFreiParkPlatz() {
+      let reqParam = {
+      mandant: 'oldenburg',
+      ukat: '78',
+      mids: '',
+      bbox: '8.179707527160645,53.15047661827499,8.222408294677734,53.12702381283486',
+      width: '995',
+      height: '910.9999999990687',
+      z: '15',
+      cluster: '1',
+      _: '',
+    };
+    const params = new URLSearchParams();
+    params.set('mandant', reqParam.mandant);
+    params.set('ukat', reqParam.ukat);
+    params.set('mids', reqParam.mids);
+    params.set('bbox', reqParam.bbox);
+    params.set('width', reqParam.width);
+    params.set('height', reqParam.height);
+    params.set('z', reqParam.z);
+    params.set('cluster', reqParam.cluster);
+    params.set('_', reqParam._);
 
+    return this.http.get(this.markerUrl, { search: params })
+      .map((res: Response) => {
+        var markers: Markers[] = [];
+        let marker: Markers;
+        // const markers :Markers[]=res.json(); return markers;
+        for (let obj of res.json()) {
+          marker = new Markers(obj.ukat, obj.lat, obj.lon, obj.id, obj.file);
+          markers.push(marker);
+        }
+        return markers;
+      })
+      .catch(this.handleError);
+  }
+
+getParkPlatz() {
+      let reqParam = {
+      mandant: 'oldenburg',
+      ukat: '14',
+      mids: '',
+      bbox: '8.189889192581177,53.15153182216292,8.243812322616577,53.132946146504004',
+      width: '2513',
+      height: '1444',
+      z: '16',
+      cluster: '1',
+      _: '',
+    };
+    const params = new URLSearchParams();
+    params.set('mandant', reqParam.mandant);
+    params.set('ukat', reqParam.ukat);
+    params.set('mids', reqParam.mids);
+    params.set('bbox', reqParam.bbox);
+    params.set('width', reqParam.width);
+    params.set('height', reqParam.height);
+    params.set('z', reqParam.z);
+    params.set('cluster', reqParam.cluster);
+    params.set('_', reqParam._);
+
+    return this.http.get(this.markerUrl, { search: params })
+      .map((res: Response) => {
+        var markers: Markers[] = [];
+        let marker: Markers;
+        // const markers :Markers[]=res.json(); return markers;
+        for (let obj of res.json()) {
+          marker = new Markers(obj.ukat, obj.lat, obj.lon, obj.id, obj.file);
+          markers.push(marker);
+        }
+        return markers;
+      })
+      .catch(this.handleError);
+  }
 
 
   getInfoMarker(id) {
@@ -92,9 +164,9 @@ export class ParkingsService   implements OnInit  {
     params.set('site', reqParam.site);
     params.set('_', reqParam._);
 
-   return this.http.get(this.infoMarkerUrl, { search: params })
-    .map((res: Response) => res.text())
-    .catch(this.handleError);
+    return this.http.get(this.infoMarkerUrl, { search: params })
+      .map((res: Response) => res.text())
+      .catch(this.handleError);
 
   }
 

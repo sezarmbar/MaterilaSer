@@ -19,6 +19,8 @@
           Oldenburg
           </h1>
             <md-checkbox class="example-margin" [(ngModel)]="parksFBehindertesShow">Parkplätze für Behinderte</md-checkbox>
+            <md-checkbox class="example-margin" [(ngModel)]="freiParkPlatzShow">Parkplätze kostenfrei</md-checkbox>
+            <md-checkbox class="example-margin" [(ngModel)]="parkPlatzShow">Parkplätze </md-checkbox>
         </div>
         <button md-mini-fab class="btncloseEnd" (click)="closeOpenSidenaveEnd()"  *ngIf="openedEnd">
             <md-icon>{{btnSideNave}}</md-icon>
@@ -42,10 +44,32 @@
         <div *ngIf="parksFBehindertesShow" >
             <sebm-google-map-marker *ngFor="let pFB of parksFBehindertes; let i = index" 
                                     [latitude]="pFB.lat" [longitude]="pFB.lon"  [iconUrl]="pFB.file"
-                                    (markerClick)="getInfoMarker(pFB.id,infowindow)">
+                                    (markerClick)="getInfoMarker(pFB.id,infowindow,pFB.ukat)">
                 <sebm-google-map-info-window #infowindow [disableAutoPan]="true">
                     <div [innerHTML]="infoMarker"></div>
                     <button md-raised-button (click)="toCurrentMarker(pFB)">Fahrren</button>
+                </sebm-google-map-info-window>
+            </sebm-google-map-marker>
+        </div>
+        <!--freiParkPlatz-->
+        <div *ngIf="freiParkPlatzShow" >
+            <sebm-google-map-marker *ngFor="let fPP of freiParkPlatz; let i = index" 
+                                    [latitude]="fPP.lat" [longitude]="fPP.lon"  [iconUrl]="fPP.file"
+                                    (markerClick)="getInfoMarker(fPP.id,infowindow,fPP.ukat)">
+                <sebm-google-map-info-window #infowindow [disableAutoPan]="true">
+                    <div [innerHTML]="infoMarker"></div>
+                    <button md-raised-button (click)="toCurrentMarker(fPP)">Fahrren</button>
+                </sebm-google-map-info-window>
+            </sebm-google-map-marker>
+        </div>
+        <!--ParkPlatz-->
+        <div *ngIf="parkPlatzShow" >
+            <sebm-google-map-marker *ngFor="let pP of parkPlatz; let i = index" 
+                                    [latitude]="pP.lat" [longitude]="pP.lon"  [iconUrl]="pP.file"
+                                    (markerClick)="getInfoMarker(pP.id,infowindow,pP.ukat)">
+                <sebm-google-map-info-window #infowindow [disableAutoPan]="true">
+                    <div [innerHTML]="infoMarker"></div>
+                    <button md-raised-button (click)="toCurrentMarker(pP)">Fahrren</button>
                 </sebm-google-map-info-window>
             </sebm-google-map-marker>
         </div>
