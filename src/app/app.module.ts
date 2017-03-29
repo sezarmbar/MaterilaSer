@@ -18,7 +18,7 @@ import { ParkTablePipe } from './pages/haus-park/pipe';
 import { AppComponent } from './app.component';
 import { SliderComponent } from './share/slider';
 import { HomeComponent , DialogContent } from './pages/home';
-import { HausTableComponent , HausParkComponent , HausMapComponent , DirectionsMapDirective , SideMapComponent} from './pages/haus-park';
+import { HausTableComponent , HausParkComponent , HausMapComponent , DirectionsMapDirective , SideMapComponent , JsonPolyLineDirective} from './pages/haus-park';
 
 
 @NgModule({
@@ -31,6 +31,7 @@ import { HausTableComponent , HausParkComponent , HausMapComponent , DirectionsM
     HausMapComponent,
     DirectionsMapDirective,
     SideMapComponent,
+    JsonPolyLineDirective,
     HausTableComponent
   ],
   imports: [

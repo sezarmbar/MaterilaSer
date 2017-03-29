@@ -5,7 +5,7 @@ import 'rxjs/Rx';
 import { ReplaySubject } from 'rxjs';
 import { Observable } from 'rxjs/Observable';
 
-import { Markers,Strassensperrung } from './index';
+import { Markers, Strassensperrung } from './index';
 
 declare var xml2json: any;
 
@@ -14,7 +14,7 @@ declare var xml2json: any;
 export class ParkingsService implements OnInit {
   markerUrl = 'http://gis4oldenburg.oldenburg.de/viewer/php/getmarker.php';
   infoMarkerUrl = 'http://gis4oldenburg.oldenburg.de/viewer/php/ajax_control.php';
-  ajax_control ='http://gis4oldenburg.oldenburg.de/viewer/php/ajax_control.php'
+  ajax_control = 'http://gis4oldenburg.oldenburg.de/viewer/php/ajax_control.php'
   constructor(private http: Http) { }
   ngOnInit() { }
 
@@ -76,7 +76,7 @@ export class ParkingsService implements OnInit {
 
   }
   getFreiParkPlatz() {
-      let reqParam = {
+    let reqParam = {
       mandant: 'oldenburg',
       ukat: '78',
       mids: '',
@@ -112,8 +112,8 @@ export class ParkingsService implements OnInit {
       .catch(this.handleError);
   }
 
-getParkPlatz() {
-      let reqParam = {
+  getParkPlatz() {
+    let reqParam = {
       mandant: 'oldenburg',
       ukat: '14',
       mids: '',
@@ -149,8 +149,8 @@ getParkPlatz() {
       .catch(this.handleError);
   }
 
-getParkHause() {
-      let reqParam = {
+  getParkHause() {
+    let reqParam = {
       mandant: 'oldenburg',
       ukat: '77',
       mids: '',
@@ -207,12 +207,12 @@ getParkHause() {
   }
 
 
-getStrassensperrung() {
-      let reqParam = {
-      functionId:'4',
-      catId:'388',
-      gtyp:'2',
-      mandant:'oldenburg',
+  getStrassensperrung() {
+    let reqParam = {
+      functionId: '4',
+      catId: '388',
+      gtyp: '2',
+      mandant: 'oldenburg',
       _: '',
     };
     const params = new URLSearchParams();
@@ -223,18 +223,33 @@ getStrassensperrung() {
     params.set('_', reqParam._);
 
     return this.http.get(this.ajax_control, { search: params })
-      .map((res: Response) => {        
+      .map((res: Response) => {
         var lines: Strassensperrung[] = [];
         let line: Strassensperrung;
         // const markers :Markers[]=res.json(); return markers;
         for (let obj of res.json()) {
-                console.log('lines[i].id');
-                  line = new Strassensperrung(obj.gtyp, obj.id, obj.pos, obj.stcolor, obj.stopacity, obj.stweight);
-                  lines.push(line);
+          line = new Strassensperrung(obj.gtyp, obj.id, obj.pos, obj.stcolor, obj.stopacity, obj.stweight);
+          lines.push(line);
         }
-        return lines;
+
+        return this.unique(lines);
       })
       .catch(this.handleError);
   }
 
+  unique(sl) {
+    var out = [];
+    for (var i = 0, l = sl.length; i < l; i++) {
+      var unique = true;
+      for (var j = 0, k = out.length; j < k; j++) {
+        if ((sl[i].id === out[j].id)) {
+          unique = false;
+        }
+      }
+      if (unique) {
+        out.push(sl[i]);
+      }
+    }
+    return out;
+  }
 }

@@ -23,6 +23,7 @@
               <md-list-item><md-checkbox class="example-margin" [(ngModel)]="freiParkPlatzShow">Parkplätze kostenfrei</md-checkbox></md-list-item>
               <md-list-item><md-checkbox class="example-margin" [(ngModel)]="parkPlatzShow">Parkplätze </md-checkbox></md-list-item>
               <md-list-item><md-checkbox class="example-margin" [(ngModel)]="ParkHauseShow">Parkhäuser </md-checkbox></md-list-item>
+              <md-list-item><md-checkbox class="example-margin" [(ngModel)]="strassensperrungShow">strassensperrungShow </md-checkbox></md-list-item>
           </md-list>
         </div>
         <button md-mini-fab class="btncloseEnd" (click)="closeOpenSidenaveEnd()"  *ngIf="openedEnd">
@@ -87,6 +88,12 @@
                 </sebm-google-map-info-window>
             </sebm-google-map-marker>
         </div>
+
+        <!--polyline-->
+        <div *ngIf="strassensperrungShow" >
+            <sebm-google-map-json-polyline [lines]="strassensperrung"></sebm-google-map-json-polyline>
+        </div>
+
         <!--Direction-->
         <sebm-google-map-directions [origin]="origin" 
                                       [destination]="destination"

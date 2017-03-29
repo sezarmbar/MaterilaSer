@@ -45,9 +45,10 @@ export class HausMapComponent implements OnInit {
   private parkPlatzShow: boolean = false;
   private strassensperrungShow: boolean = false;
   private infoMarker: any;
+  private strassensperrung= [];
   private lastclickedMarker: any;
   private currentMarkerId: any;
-  private lastUkat:number;
+  private lastUkat: number;
   isClicked: boolean;
   lastClicked: SebmGoogleMapInfoWindow;
   public styleArray = [
@@ -88,7 +89,7 @@ export class HausMapComponent implements OnInit {
     this.getFreiParkPlatz();
     this.getParkPlatz();
     this.getParkHause();
-    this. getStrassensperrung();
+    this.getStrassensperrung();
     this.destenyInput = this.addresService.parkhausname;
     this.serchAddres();
     this.setMaker();
@@ -196,17 +197,30 @@ export class HausMapComponent implements OnInit {
         this.parkHause = markers;
       });
   }
-  getStrassensperrung(){
+  getStrassensperrung() {
     this.parkingsService.getStrassensperrung().subscribe(
       (lines) => {
-        console.log(lines);
+        for (let line of lines) {
+          let pos = line.pos.split(',');
+          let id = line.id;
+          let each = [];
+          // for (let ppos of pos) {
+         for (var _i = 0; _i < pos.length; _i++) {
+            let newpos = pos[_i].split(' ');
+            each.push({ 'lat': Number(newpos[0]), 'lng': Number(newpos[1])  })
+            // if(ppos.length>ppos.length-1){}
+            // each.push({ lat: newpos[0], lng: newpos[1] })
+          }
+          this.strassensperrung.push( each )
+        }
+        console.log(JSON.stringify(this.strassensperrung));
       });
   }
-  chckeMrkerGroup(){
-    if(!(this.parksFBehindertesShow) && this.lastUkat == 364 ){ this.lastClicked = null;}
-    if(!(this.freiParkPlatzShow) && this.lastUkat == 78){ this.lastClicked = null;}
-    if(!(this.ParkHauseShow) && this.lastUkat == 77){ this.lastClicked = null;}
-    if(!(this.parkPlatzShow) && this.lastUkat == 14){ this.lastClicked = null;}
+  chckeMrkerGroup() {
+    if (!(this.parksFBehindertesShow) && this.lastUkat == 364) { this.lastClicked = null; }
+    if (!(this.freiParkPlatzShow) && this.lastUkat == 78) { this.lastClicked = null; }
+    if (!(this.ParkHauseShow) && this.lastUkat == 77) { this.lastClicked = null; }
+    if (!(this.parkPlatzShow) && this.lastUkat == 14) { this.lastClicked = null; }
   }
   getInfoMarker(id, infoWindow, ukat) {
     this.chckeMrkerGroup();
@@ -215,7 +229,7 @@ export class HausMapComponent implements OnInit {
         // this.infoMarker = infoMarker.replace(/<{1}[^<>]{1,}>{1}/g," ");
         this.infoMarker = infoMarker.replace(/<\/title>$/);
       });
-    if (this.lastClicked && this.lastClicked !== infoWindow ) {
+    if (this.lastClicked && this.lastClicked !== infoWindow) {
       this.lastClicked.close();
     }
     this.lastClicked = infoWindow;
@@ -229,9 +243,9 @@ export class HausMapComponent implements OnInit {
     this.lastClicked = null;
     this.parksFBehindertesShow = false;
     this.freiParkPlatzShow = false;
+    this.ParkHauseShow = false;
     this.parkPlatzShow = false;
   }
-  
   mapClicked($event) {
     this.isClicked = false;
     if (this.lastClicked) {
