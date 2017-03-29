@@ -199,7 +199,8 @@ export class HausMapComponent implements OnInit {
   }
   getStrassensperrung() {
     this.parkingsService.getStrassensperrung().subscribe(
-      (lines) => {
+      (lines) => {console.log(lines);
+      
         for (let line of lines) {
           let pos = line.pos.split(',');
           let id = line.id;
@@ -207,13 +208,10 @@ export class HausMapComponent implements OnInit {
           // for (let ppos of pos) {
          for (var _i = 0; _i < pos.length; _i++) {
             let newpos = pos[_i].split(' ');
-            each.push({ 'lat': Number(newpos[0]), 'lng': Number(newpos[1])  })
-            // if(ppos.length>ppos.length-1){}
-            // each.push({ lat: newpos[0], lng: newpos[1] })
+            each.push({ 'lat': Number(newpos[0]), 'lng': Number(newpos[1])})
           }
           this.strassensperrung.push( each )
         }
-        console.log(JSON.stringify(this.strassensperrung));
       });
   }
   chckeMrkerGroup() {
