@@ -92,10 +92,10 @@
 
         <!--polyline-->
         <div *ngIf="strassensperrungShow" >
-            <sebm-google-map-json-polyline [lines]="strassensperrung"></sebm-google-map-json-polyline>
+            <sebm-google-map-json-polyline [lines]="strassensperrung" [strokeColor]="strassensperrungColor" ></sebm-google-map-json-polyline>
         </div>
         <div *ngIf="grosseUmleitungenShow" >
-            <sebm-google-map-json-polyline [lines]="grosseUmleitungen"></sebm-google-map-json-polyline>
+            <sebm-google-map-json-polyline [lines]="grosseUmleitungen" [strokeColor]="grosseUmleitungenColor"></sebm-google-map-json-polyline>
         </div>
         <!--Direction-->
         <sebm-google-map-directions [origin]="origin" 

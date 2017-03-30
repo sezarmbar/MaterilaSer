@@ -7,7 +7,7 @@ import { MapsAPILoader } from 'angular2-google-maps/core';
 })
 export class JsonPolyLineDirective {
   @Input() lines;
-  @Input() strokeColor;
+  @Input() strokeColor='#FF0000';
   @Input() strokeWeight;
   @Input() strokeOpacity;
   public map: any;
@@ -22,13 +22,12 @@ export class JsonPolyLineDirective {
     const me = this;
     this.gmapsApi.getNativeMap().then(map => {
       me.map = map;
-
       for (let i = 0; i < this.lines.length; i++) {
         const line = new google.maps.Polyline({
           path: this.lines[i],
           map: map,
           geodesic: true,
-          strokeColor: '#FF0000',
+          strokeColor: me.strokeColor,
           strokeOpacity: 0.7,
           strokeWeight: 10
         });
@@ -38,7 +37,7 @@ export class JsonPolyLineDirective {
   }
   deleteLine() {
     for (let line of this.polyline) {
-      line.setMap(null)
+      line.setMap(null);
     }
   }
 }

@@ -45,8 +45,8 @@ export class HausMapComponent implements OnInit {
   private parkPlatzShow: boolean = false;
   private strassensperrungShow: boolean = false;
   private grosseUmleitungenShow: boolean = false;
-  // private strassensperrungShow: string = ;
-  // private grosseUmleitungenShow: string =;
+  private strassensperrungColor: string = '#FF0000' ;
+  private grosseUmleitungenColor: string ='#0000ff';
   private infoMarker: any;
   private strassensperrung = [];
   private grosseUmleitungen = [];
