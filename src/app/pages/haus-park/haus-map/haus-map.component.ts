@@ -44,8 +44,12 @@ export class HausMapComponent implements OnInit {
   private ParkHauseShow: boolean = false;
   private parkPlatzShow: boolean = false;
   private strassensperrungShow: boolean = false;
+  private grosseUmleitungenShow: boolean = false;
+  // private strassensperrungShow: string = ;
+  // private grosseUmleitungenShow: string =;
   private infoMarker: any;
-  private strassensperrung= [];
+  private strassensperrung = [];
+  private grosseUmleitungen = [];
   private lastclickedMarker: any;
   private currentMarkerId: any;
   private lastUkat: number;
@@ -90,6 +94,7 @@ export class HausMapComponent implements OnInit {
     this.getParkPlatz();
     this.getParkHause();
     this.getStrassensperrung();
+    this.getGrosseUmleitungen();
     this.destenyInput = this.addresService.parkhausname;
     this.serchAddres();
     this.setMaker();
@@ -199,18 +204,33 @@ export class HausMapComponent implements OnInit {
   }
   getStrassensperrung() {
     this.parkingsService.getStrassensperrung().subscribe(
-      (lines) => {console.log(lines);
-      
+      (lines) => {
         for (let line of lines) {
           let pos = line.pos.split(',');
           let id = line.id;
           let each = [];
           // for (let ppos of pos) {
-         for (var _i = 0; _i < pos.length; _i++) {
+          for (var _i = 0; _i < pos.length; _i++) {
             let newpos = pos[_i].split(' ');
-            each.push({ 'lat': Number(newpos[0]), 'lng': Number(newpos[1])})
+            each.push({ 'lat': Number(newpos[0]), 'lng': Number(newpos[1]) })
           }
-          this.strassensperrung.push( each )
+          this.strassensperrung.push(each)
+        }
+      });
+  }
+  getGrosseUmleitungen() {
+    this.parkingsService.getGrosseUmleitungen().subscribe(
+      (lines) => {
+        for (let line of lines) {
+          let pos = line.pos.split(',');
+          let id = line.id;
+          let each = [];
+          // for (let ppos of pos) {
+          for (var _i = 0; _i < pos.length; _i++) {
+            let newpos = pos[_i].split(' ');
+            each.push({ 'lat': Number(newpos[0]), 'lng': Number(newpos[1]) })
+          }
+          this.grosseUmleitungen.push(each)
         }
       });
   }

@@ -11,18 +11,20 @@ export class JsonPolyLineDirective {
   @Input() strokeWeight;
   @Input() strokeOpacity;
   public map: any;
+  public polyline = [];
   constructor(private gmapsApi: GoogleMapsAPIWrapper, private mapsAPILoader: MapsAPILoader) {
   }
   ngOnInit() {
     this.renderPolyline();
   }
+  ngOnDestroy() { this.deleteLine() }
   renderPolyline() {
+    const me = this;
     this.gmapsApi.getNativeMap().then(map => {
-      const me = this;
       me.map = map;
 
-      for (var i = 0; i < this.lines.length; i++) {
-        var poly = new google.maps.Polyline({
+      for (let i = 0; i < this.lines.length; i++) {
+        const line = new google.maps.Polyline({
           path: this.lines[i],
           map: map,
           geodesic: true,
@@ -30,7 +32,13 @@ export class JsonPolyLineDirective {
           strokeOpacity: 0.7,
           strokeWeight: 10
         });
+        me.polyline.push(line)
       }
     });
+  }
+  deleteLine() {
+    for (let line of this.polyline) {
+      line.setMap(null)
+    }
   }
 }

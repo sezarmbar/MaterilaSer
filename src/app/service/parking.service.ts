@@ -237,6 +237,36 @@ export class ParkingsService implements OnInit {
       .catch(this.handleError);
   }
 
+  getGrosseUmleitungen() {
+    let reqParam = {
+      functionId: '4',
+      catId: '391',
+      gtyp: '2',
+      mandant: 'oldenburg',
+      _: '',
+    };
+    const params = new URLSearchParams();
+    params.set('mandant', reqParam.mandant);
+    params.set('functionId', reqParam.functionId);
+    params.set('catId', reqParam.catId);
+    params.set('gtyp', reqParam.gtyp);
+    params.set('_', reqParam._);
+
+    return this.http.get(this.ajax_control, { search: params })
+      .map((res: Response) => {
+        var lines: Strassensperrung[] = [];
+        let line: Strassensperrung;
+        // const markers :Markers[]=res.json(); return markers;
+        for (let obj of res.json()) {
+          line = new Strassensperrung(obj.gtyp, obj.id, obj.pos, obj.stcolor, obj.stopacity, obj.stweight);
+          lines.push(line);
+        }
+
+        return this.unique(lines);
+      })
+      .catch(this.handleError);
+  }
+
   unique(sl) {
     var out = [];
     for (var i = 0, l = sl.length; i < l; i++) {
