@@ -217,6 +217,7 @@ export class HausMapComponent implements OnInit {
     if (!(this.parkPlatzShow) && this.lastUkat == 14) { this.lastClicked = null; }
   }
   getInfoMarker(id, infoWindow, ukat) {
+    this.infoMarker = 'Laden...'
     this.chckeMrkerGroup();
     this.parkingsService.getInfoMarker(id).subscribe(
       (infoMarker) => {
