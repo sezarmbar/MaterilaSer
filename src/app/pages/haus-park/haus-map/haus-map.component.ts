@@ -45,8 +45,8 @@ export class HausMapComponent implements OnInit {
   private parkPlatzShow: boolean = false;
   private strassensperrungShow: boolean = false;
   private grosseUmleitungenShow: boolean = false;
-  private strassensperrungColor: string = '#FF0000' ;
-  private grosseUmleitungenColor: string ='#0000ff';
+  private strassensperrungColor: string = '#FF0000';
+  private grosseUmleitungenColor: string = '#0000ff';
   private infoMarker: any;
   private strassensperrung = [];
   private grosseUmleitungen = [];
@@ -203,36 +203,12 @@ export class HausMapComponent implements OnInit {
       });
   }
   getStrassensperrung() {
-    this.parkingsService.getStrassensperrung().subscribe(
-      (lines) => {
-        for (let line of lines) {
-          let pos = line.pos.split(',');
-          let id = line.id;
-          let each = [];
-          // for (let ppos of pos) {
-          for (var _i = 0; _i < pos.length; _i++) {
-            let newpos = pos[_i].split(' ');
-            each.push({ 'lat': Number(newpos[0]), 'lng': Number(newpos[1]) })
-          }
-          this.strassensperrung.push(each)
-        }
-      });
+    this.parkingsService.getStrassen(388).subscribe(
+      (lines) => this.strassensperrung = lines);
   }
   getGrosseUmleitungen() {
-    this.parkingsService.getGrosseUmleitungen().subscribe(
-      (lines) => {
-        for (let line of lines) {
-          let pos = line.pos.split(',');
-          let id = line.id;
-          let each = [];
-          // for (let ppos of pos) {
-          for (var _i = 0; _i < pos.length; _i++) {
-            let newpos = pos[_i].split(' ');
-            each.push({ 'lat': Number(newpos[0]), 'lng': Number(newpos[1]) })
-          }
-          this.grosseUmleitungen.push(each)
-        }
-      });
+    this.parkingsService.getStrassen(391).subscribe(
+      (lines) => this.grosseUmleitungen = lines);
   }
   chckeMrkerGroup() {
     if (!(this.parksFBehindertesShow) && this.lastUkat == 364) { this.lastClicked = null; }
@@ -263,6 +239,8 @@ export class HausMapComponent implements OnInit {
     this.freiParkPlatzShow = false;
     this.ParkHauseShow = false;
     this.parkPlatzShow = false;
+    this.strassensperrungShow= false;
+    this.grosseUmleitungenShow = false;
   }
   mapClicked($event) {
     this.isClicked = false;

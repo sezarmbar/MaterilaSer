@@ -5,7 +5,7 @@ import 'rxjs/Rx';
 import { ReplaySubject } from 'rxjs';
 import { Observable } from 'rxjs/Observable';
 
-import { Markers, Strassensperrung } from './index';
+import { Markers, Strassen } from './index';
 
 declare var xml2json: any;
 
@@ -207,10 +207,10 @@ export class ParkingsService implements OnInit {
   }
 
 
-  getStrassensperrung() {
+  getStrassen(catId) {
     let reqParam = {
       functionId: '4',
-      catId: '388',
+      catId: catId,
       gtyp: '2',
       mandant: 'oldenburg',
       _: '',
@@ -224,49 +224,32 @@ export class ParkingsService implements OnInit {
 
     return this.http.get(this.ajax_control, { search: params })
       .map((res: Response) => {
-        var lines: Strassensperrung[] = [];
-        let line: Strassensperrung;
-        // const markers :Markers[]=res.json(); return markers;
+        var lines: Strassen[] = [];
+        let line: Strassen;
+        let strassenArray=[];
         for (let obj of res.json()) {
-          line = new Strassensperrung(obj.gtyp, obj.id, obj.pos, obj.stcolor, obj.stopacity, obj.stweight);
+          line = new Strassen(obj.gtyp, obj.id, obj.pos, obj.stcolor, obj.stopacity, obj.stweight);
           lines.push(line);
         }
+         for (let line of this.unique(lines)) {
+          let pos = line.pos.split(',');
+          let i = line.id;
+          let each = [];
+          let eachWithId=[];
+          eachWithId.push({id:line.id})
+          for (let ppos of pos) {
+            let newpos = ppos.split(' ');
+            each.push({ 'lat': Number(newpos[0]), 'lng': Number(newpos[1]) })
+          }
+          eachWithId.push(each)
+          strassenArray.push(eachWithId)
+          // this.strassensperrung.push(each)
+        }
+        return strassenArray;
 
-        return this.unique(lines);
       })
       .catch(this.handleError);
   }
-
-  getGrosseUmleitungen() {
-    let reqParam = {
-      functionId: '4',
-      catId: '391',
-      gtyp: '2',
-      mandant: 'oldenburg',
-      _: '',
-    };
-    const params = new URLSearchParams();
-    params.set('mandant', reqParam.mandant);
-    params.set('functionId', reqParam.functionId);
-    params.set('catId', reqParam.catId);
-    params.set('gtyp', reqParam.gtyp);
-    params.set('_', reqParam._);
-
-    return this.http.get(this.ajax_control, { search: params })
-      .map((res: Response) => {
-        var lines: Strassensperrung[] = [];
-        let line: Strassensperrung;
-        // const markers :Markers[]=res.json(); return markers;
-        for (let obj of res.json()) {
-          line = new Strassensperrung(obj.gtyp, obj.id, obj.pos, obj.stcolor, obj.stopacity, obj.stweight);
-          lines.push(line);
-        }
-
-        return this.unique(lines);
-      })
-      .catch(this.handleError);
-  }
-
   unique(sl) {
     var out = [];
     for (var i = 0, l = sl.length; i < l; i++) {

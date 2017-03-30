@@ -1,4 +1,4 @@
-export class Strassensperrung {
+export class Strassen {
   gtyp   : number;
   id  : number;
   pos : string;

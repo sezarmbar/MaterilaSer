@@ -22,9 +22,9 @@ export class JsonPolyLineDirective {
     const me = this;
     this.gmapsApi.getNativeMap().then(map => {
       me.map = map;
-      for (let i = 0; i < this.lines.length; i++) {
+      for (let pline of this.lines) {
         const line = new google.maps.Polyline({
-          path: this.lines[i],
+          path: pline[1],
           map: map,
           geodesic: true,
           strokeColor: me.strokeColor,
