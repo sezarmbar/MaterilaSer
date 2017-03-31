@@ -236,7 +236,7 @@ export class ParkingsService implements OnInit {
           let i = line.id;
           let each = [];
           let eachWithId=[];
-          eachWithId.push({id:line.id})
+          eachWithId.push(line.id)
           for (let ppos of pos) {
             let newpos = ppos.split(' ');
             each.push({ 'lat': Number(newpos[0]), 'lng': Number(newpos[1]) })
@@ -250,6 +250,26 @@ export class ParkingsService implements OnInit {
       })
       .catch(this.handleError);
   }
+  getStrassenInfoMarker(Id) {
+    let reqParam = {
+      functionId: '9',
+      id: Id,
+      site: 'gis4oldenburg.oldenburg.de/oldenburg/',
+      mandant: 'oldenburg',
+      _: '',
+    };
+    const params = new URLSearchParams();
+    params.set('mandant', reqParam.mandant);
+    params.set('functionId', reqParam.functionId);
+    params.set('id', reqParam.id);
+    params.set('site', reqParam.site);
+    params.set('_', reqParam._);
+
+    return this.http.get(this.ajax_control, { search: params })
+      .map((res: Response) => res.text() )
+      .catch(this.handleError);
+  }
+
   unique(sl) {
     var out = [];
     for (var i = 0, l = sl.length; i < l; i++) {

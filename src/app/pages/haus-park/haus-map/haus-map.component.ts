@@ -155,7 +155,7 @@ export class HausMapComponent implements OnInit {
       this.btnSideNaveEnd = 'chevron_right';
     }
   }
-
+// marker current position for novigatsion 
   setMaker() {
     let me = this;
     if (navigator.geolocation) {

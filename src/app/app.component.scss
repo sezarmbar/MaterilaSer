@@ -29,16 +29,16 @@ md-sidenav-container.m2app-dark {
 .mat-toolbar {
       min-height: 60px !important;
 }
-@media (min-width: 961px) {
+// @media (min-width: 961px) {
   .app-layout{
     height: calc(100vh - 64px);
   }
-}
-@media (max-width: 960px) {
-.app-layout{
-    height: calc(100vh - 48px);
-  }
-}
+// }
+// @media (max-width: 960px) {
+// .app-layout{
+//     height: calc(100vh - 48px);
+//   }
+// }
 
 .app-sidenav {
   padding: 0px;

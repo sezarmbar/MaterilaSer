@@ -14,28 +14,40 @@
         <div id="right-panel" class="flexcroll" #planRoutMap></div>
     </md-sidenav>
     <md-sidenav mode="side" #sidenavEnd align="end">
-        <div class="app-layout" align='center' (swiperight)="closeOpenSidenaveEnd()">
+        <div class="sideEnd-layout" align='center' (swiperight)="closeOpenSidenaveEnd()">
             <h1>
                 Oldenburg
             </h1>
             <md-list>
-                <md-list-item>
-                    <md-checkbox class="example-margin" [(ngModel)]="parksFBehindertesShow">Parkplätze für Behinderte</md-checkbox>
+                <md-list-item>                    
+                    <md-checkbox class="example-margin" [(ngModel)]="parksFBehindertesShow">
+                        <img src="http://gis4oldenburg.oldenburg.de/mandant/musterstadt_oldenburg/images/poi/1398877145.jpg" width="24" height="30">                        
+                        Parkplätze für Behinderte</md-checkbox>
                 </md-list-item>
                 <md-list-item>
-                    <md-checkbox class="example-margin" [(ngModel)]="freiParkPlatzShow">Parkplätze kostenfrei</md-checkbox>
+                    <md-checkbox class="example-margin" [(ngModel)]="freiParkPlatzShow">
+                        <img src="http://gis4oldenburg.oldenburg.de/mandant/musterstadt_oldenburg/images/poi/2.gif" width="24" height="24">
+                        Parkplätze kostenfrei</md-checkbox>
                 </md-list-item>
                 <md-list-item>
-                    <md-checkbox class="example-margin" [(ngModel)]="parkPlatzShow">Parkplätze </md-checkbox>
+                    <md-checkbox class="example-margin" [(ngModel)]="parkPlatzShow">
+                        <img src="http://gis4oldenburg.oldenburg.de/mandant/musterstadt_oldenburg/images/poi/2.gif" width="24" height="24">
+                        Parkplätze </md-checkbox>
                 </md-list-item>
                 <md-list-item>
-                    <md-checkbox class="example-margin" [(ngModel)]="ParkHauseShow">Parkhäuser </md-checkbox>
+                    <md-checkbox class="example-margin" [(ngModel)]="ParkHauseShow">
+                        <img src="http://gis4oldenburg.oldenburg.de/mandant/musterstadt_oldenburg/images/poi/1.gif" width="24" height="24">
+                        Parkhäuser </md-checkbox>
                 </md-list-item>
                 <md-list-item>
-                    <md-checkbox class="example-margin" [(ngModel)]="strassensperrungShow">Straßensperrung </md-checkbox>
+                    <md-checkbox class="example-margin" [(ngModel)]="strassensperrungShow">
+                        <img src="./assets/sperrung.jpg" width="24" height="24">
+                        Straßensperrung </md-checkbox>
                 </md-list-item>
                 <md-list-item>
-                    <md-checkbox class="example-margin" [(ngModel)]="grosseUmleitungenShow">Große Umleitungen  </md-checkbox>
+                    <md-checkbox class="example-margin" [(ngModel)]="grosseUmleitungenShow">
+                        <img src="./assets/umleit.png" width="24" height="24">
+                        Große Umleitungen  </md-checkbox>
                 </md-list-item>
             </md-list>
         </div>
@@ -50,7 +62,7 @@
         <md-icon>{{btnSideNaveEnd}}</md-icon>
     </button>
     <!--Map-->
-    <sebm-google-map class="sebm-google-map-map" [latitude]="markerPos.lat" [longitude]="markerPos.lng" [zoom]="zoom" [styles]="styleArray"
+    <sebm-google-map class="sebm-google-map-map" [latitude]="oldenburgLatLng.lat" [longitude]="oldenburgLatLng.lng" [zoom]="zoom" [styles]="styleArray"
         (mapClick)="mapClicked($event)">
         <!--Marker-->
         <sebm-google-map-marker [latitude]="markerPos.lat" [longitude]="markerPos.lng" [iconUrl]="markerIcon"></sebm-google-map-marker>
