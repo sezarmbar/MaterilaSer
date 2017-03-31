@@ -108,6 +108,12 @@ export class DirectionsMapDirective {
              this.directionsDisplay.setPanel(this.elPlanRout.nativeElement);
     });
   }
+  clearDirection(){
+    this.directionsDisplay.setMap(null);
+    for(let marker of this.markerArray){
+      marker.setMap(null)
+    }
+  }
   makeMarker( position, icon, title,i,content ) {
    var marker = new google.maps.Marker({
       position: position,

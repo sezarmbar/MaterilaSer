@@ -115,7 +115,9 @@ export class HausMapComponent implements OnInit {
   resetPos() {
     this.addresService.resetCarePositsion();
   }
-
+  clearDirection() {
+    this.directionRender.clearDirection();
+  }
   serchAddres() {
     for (let i = 0; i < this.parkhauseAddreses.length; i++) {
       let parkHaus = this.parkhauseAddreses[i];
@@ -155,12 +157,12 @@ export class HausMapComponent implements OnInit {
       this.btnSideNaveEnd = 'chevron_right';
     }
   }
-// marker current position for novigatsion 
+  // marker current position for novigatsion 
   setMaker() {
     let me = this;
     if (navigator.geolocation) {
       // timeout at 20000 milliseconds (20 seconds)
-      const options = { timeout: 20000, enableHighAccuracy: false, maximumAge: 0 };
+      const options = { timeout: 20000, enableHighAccuracy: true, maximumAge: 0 };
       this.watchID = navigator.geolocation.watchPosition(position => {
         me.markerPos.lat = position.coords.latitude;
         me.markerPos.lng = position.coords.longitude;
@@ -240,7 +242,7 @@ export class HausMapComponent implements OnInit {
     this.freiParkPlatzShow = false;
     this.ParkHauseShow = false;
     this.parkPlatzShow = false;
-    this.strassensperrungShow= false;
+    this.strassensperrungShow = false;
     this.grosseUmleitungenShow = false;
   }
   mapClicked($event) {
