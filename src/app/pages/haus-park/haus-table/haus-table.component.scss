@@ -45,16 +45,16 @@
   padding: 0px;
   min-width: 320px !important;
 }
-@media (min-width: 961px) {
+// @media (min-width: 961px) {
   .app-layout{
     height: calc(100vh - 64px);
   }
-}
-@media (max-width: 960px) {
-.app-layout{
-    height: calc(100vh - 48px);
-  }
-}
+// }
+// @media (max-width: 960px) {
+// .app-layout{
+//     height: calc(100vh - 48px);
+//   }
+// }
 .adp{
     width: 310px;
 }
