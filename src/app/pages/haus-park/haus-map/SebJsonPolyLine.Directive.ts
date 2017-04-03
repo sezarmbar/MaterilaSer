@@ -56,7 +56,6 @@ export class JsonPolyLineDirective {
       let infos; 
       this.parkingsService.getStrassenInfoMarker(line.id).subscribe(
       (info) => infos=info)
-      console.log(infos );
       this.getLinInfo(line.id);
       infoWindow = new google.maps.InfoWindow({
         content: '<div class="info_content">' + this.InfofromService + '</div>'

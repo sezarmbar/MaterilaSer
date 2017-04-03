@@ -55,7 +55,7 @@
             </md-list>
         </div>
         <button md-mini-fab class="btncloseEnd" (click)="closeOpenSidenaveEnd()" *ngIf="openedEnd">
-            <md-icon>{{btnSideNave}}</md-icon>
+            <md-icon>{{btnSideNaveEnd}}</md-icon>
         </button>
     </md-sidenav>
     <button md-mini-fab class="btnOpen" (click)="closeOpenSidenave()" *ngIf="!opened">
@@ -76,6 +76,8 @@
                 <sebm-google-map-info-window #infowindow >
                     <div [innerHTML]="infoMarker"></div>
                     <button md-raised-button (click)="toCurrentMarker(pFB)">Fahrren</button>
+                    <p></p>
+                    
                 </sebm-google-map-info-window>
             </sebm-google-map-marker>
         </div>
@@ -86,6 +88,7 @@
                 <sebm-google-map-info-window #infowindow >
                     <div [innerHTML]="infoMarker"></div>
                     <button md-raised-button (click)="toCurrentMarker(fPP)">Fahrren</button>
+                    <p></p>
                 </sebm-google-map-info-window>
             </sebm-google-map-marker>
         </div>
@@ -96,6 +99,7 @@
                 <sebm-google-map-info-window #infowindow >
                     <div [innerHTML]="infoMarker"></div>
                     <button md-raised-button (click)="toCurrentMarker(pP)">Fahrren</button>
+                    <p></p>                    
                 </sebm-google-map-info-window>
             </sebm-google-map-marker>
         </div>
@@ -106,6 +110,7 @@
                 <sebm-google-map-info-window #infowindow >
                     <div [innerHTML]="infoMarker"></div>
                     <button md-raised-button (click)="toCurrentMarker(pH)">Fahrren</button>
+                    <p></p>
                 </sebm-google-map-info-window>
             </sebm-google-map-marker>
         </div>

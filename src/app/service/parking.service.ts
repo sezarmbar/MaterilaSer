@@ -19,7 +19,7 @@ export class ParkingsService implements OnInit {
   ngOnInit() { }
 
   getParks() {
-    return this.http.get('assets/pls.xml')
+    return this.http.get('http://oldenburg-service.de/cros.php')
       .map(res => JSON.parse(xml2json(res.text(), '  ')));
   }
   private handleError(error: Response | any) {
