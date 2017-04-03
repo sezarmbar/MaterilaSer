@@ -23,32 +23,32 @@
             </h1>
             <md-list>
                 <md-list-item>                    
-                    <md-checkbox class="example-margin" [(ngModel)]="parksFBehindertesShow">
+                    <md-checkbox class="example-margin" [(ngModel)]="parksFBehindertesShow" (change)="chckeMrkerGroup()">
                         <img src="http://gis4oldenburg.oldenburg.de/mandant/musterstadt_oldenburg/images/poi/1398877145.jpg" width="24" height="30">                        
                         Parkplätze für Behinderte</md-checkbox>
                 </md-list-item>
                 <md-list-item>
-                    <md-checkbox class="example-margin" [(ngModel)]="freiParkPlatzShow">
+                    <md-checkbox class="example-margin" [(ngModel)]="freiParkPlatzShow"(change)="chckeMrkerGroup()">
                         <img src="http://gis4oldenburg.oldenburg.de/mandant/musterstadt_oldenburg/images/poi/2.gif" width="24" height="24">
                         Parkplätze kostenfrei</md-checkbox>
                 </md-list-item>
                 <md-list-item>
-                    <md-checkbox class="example-margin" [(ngModel)]="parkPlatzShow">
+                    <md-checkbox class="example-margin" [(ngModel)]="parkPlatzShow"(change)="chckeMrkerGroup()">
                         <img src="http://gis4oldenburg.oldenburg.de/mandant/musterstadt_oldenburg/images/poi/2.gif" width="24" height="24">
                         Parkplätze </md-checkbox>
                 </md-list-item>
                 <md-list-item>
-                    <md-checkbox class="example-margin" [(ngModel)]="ParkHauseShow">
+                    <md-checkbox class="example-margin" [(ngModel)]="ParkHauseShow"(change)="chckeMrkerGroup()">
                         <img src="http://gis4oldenburg.oldenburg.de/mandant/musterstadt_oldenburg/images/poi/1.gif" width="24" height="24">
                         Parkhäuser </md-checkbox>
                 </md-list-item>
                 <md-list-item>
-                    <md-checkbox class="example-margin" [(ngModel)]="strassensperrungShow">
+                    <md-checkbox class="example-margin" [(ngModel)]="strassensperrungShow"(change)="chckeMrkerGroup()">
                         <img src="./assets/sperrung.jpg" width="24" height="24">
                         Straßensperrung </md-checkbox>
                 </md-list-item>
                 <md-list-item>
-                    <md-checkbox class="example-margin" [(ngModel)]="grosseUmleitungenShow">
+                    <md-checkbox class="example-margin" [(ngModel)]="grosseUmleitungenShow"(change)="chckeMrkerGroup()">
                         <img src="./assets/umleit.png" width="24" height="24">
                         Große Umleitungen  </md-checkbox>
                 </md-list-item>
@@ -73,7 +73,7 @@
         <div *ngIf="parksFBehindertesShow">
             <sebm-google-map-marker *ngFor="let pFB of parksFBehindertes; let i = index" [latitude]="pFB.lat" [longitude]="pFB.lon" [iconUrl]="pFB.file"
                 (markerClick)="getInfoMarker(pFB.id,infowindow,pFB.ukat)">
-                <sebm-google-map-info-window #infowindow [disableAutoPan]="true">
+                <sebm-google-map-info-window #infowindow >
                     <div [innerHTML]="infoMarker"></div>
                     <button md-raised-button (click)="toCurrentMarker(pFB)">Fahrren</button>
                 </sebm-google-map-info-window>
@@ -83,7 +83,7 @@
         <div *ngIf="freiParkPlatzShow">
             <sebm-google-map-marker *ngFor="let fPP of freiParkPlatz; let i = index" [latitude]="fPP.lat" [longitude]="fPP.lon" [iconUrl]="fPP.file"
                 (markerClick)="getInfoMarker(fPP.id,infowindow,fPP.ukat)">
-                <sebm-google-map-info-window #infowindow [disableAutoPan]="true">
+                <sebm-google-map-info-window #infowindow >
                     <div [innerHTML]="infoMarker"></div>
                     <button md-raised-button (click)="toCurrentMarker(fPP)">Fahrren</button>
                 </sebm-google-map-info-window>
@@ -93,7 +93,7 @@
         <div *ngIf="parkPlatzShow">
             <sebm-google-map-marker *ngFor="let pP of parkPlatz; let i = index" [latitude]="pP.lat" [longitude]="pP.lon" [iconUrl]="pP.file"
                 (markerClick)="getInfoMarker(pP.id,infowindow,pP.ukat)">
-                <sebm-google-map-info-window #infowindow [disableAutoPan]="true">
+                <sebm-google-map-info-window #infowindow >
                     <div [innerHTML]="infoMarker"></div>
                     <button md-raised-button (click)="toCurrentMarker(pP)">Fahrren</button>
                 </sebm-google-map-info-window>
@@ -103,7 +103,7 @@
         <div *ngIf="ParkHauseShow">
             <sebm-google-map-marker *ngFor="let pH of parkHause; let i = index" [latitude]="pH.lat" [longitude]="pH.lon" [iconUrl]="pH.file"
                 (markerClick)="getInfoMarker(pH.id,infowindow,pH.ukat)">
-                <sebm-google-map-info-window #infowindow [disableAutoPan]="true">
+                <sebm-google-map-info-window #infowindow >
                     <div [innerHTML]="infoMarker"></div>
                     <button md-raised-button (click)="toCurrentMarker(pH)">Fahrren</button>
                 </sebm-google-map-info-window>

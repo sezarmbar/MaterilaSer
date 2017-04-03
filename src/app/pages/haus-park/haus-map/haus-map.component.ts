@@ -212,22 +212,22 @@ export class HausMapComponent implements OnInit {
     this.parkingsService.getStrassen(391).subscribe(
       (lines) => this.grosseUmleitungen = lines);
   }
-  chckeMrkerGroup() {
-    if (!(this.parksFBehindertesShow) && this.lastUkat == 364) { this.lastClicked = null; }
-    if (!(this.freiParkPlatzShow) && this.lastUkat == 78) { this.lastClicked = null; }
-    if (!(this.ParkHauseShow) && this.lastUkat == 77) { this.lastClicked = null; }
-    if (!(this.parkPlatzShow) && this.lastUkat == 14) { this.lastClicked = null; }
+  chckeMrkerGroup() { 
+    if (!(this.parksFBehindertesShow) && this.lastUkat == 364) { this.lastClicked = null; this.lastUkat = null;}
+    if (!(this.freiParkPlatzShow) && this.lastUkat == 78) { this.lastClicked = null;this.lastUkat = null; }
+    if (!(this.ParkHauseShow) && this.lastUkat == 77) { this.lastClicked = null;this.lastUkat = null;}
+    if (!(this.parkPlatzShow) && this.lastUkat == 14) { this.lastClicked = null;this.lastUkat = null; }
   }
   getInfoMarker(id, infoWindow, ukat) {
     this.infoMarker = 'Laden...'
-    this.chckeMrkerGroup();
+    //  this.chckeMrkerGroup();
     this.parkingsService.getInfoMarker(id).subscribe(
       (infoMarker) => {
         // this.infoMarker = infoMarker.replace(/<{1}[^<>]{1,}>{1}/g," ");
         this.infoMarker = infoMarker.replace(/<\/title>$/);
       });
     if (this.lastClicked && this.lastClicked !== infoWindow) {
-      this.lastClicked.close();
+       this.lastClicked.close();
     }
     this.lastClicked = infoWindow;
     this.lastUkat = ukat;
