@@ -6,6 +6,7 @@ import { ParkingsService, addresShared, ADDRESES } from '../../../service';
 import { DirectionsMapDirective } from './DirectionsMap.Directive';
 
 declare var google: any;
+declare var Audio: any;
 // http://gis4oldenburg.oldenburg.de/?es=C12S77
 @Component({
   selector: 'app-haus-map',
@@ -17,6 +18,7 @@ export class HausMapComponent implements OnInit {
   @ViewChild('sidenavEnd') sidenavEnd: MdSidenav;
   @ViewChild(DirectionsMapDirective) directionRender;
   @ViewChild('planRoutMap') elPlanRout: ElementRef;
+  public tmp ='((53.12817645691219, 8.180056798706119), (53.16266808904921, 8.26743243957526))';
   public showside: boolean = false;
   public title: string = 'oldenburg';
   public oldenburgLatLng = { lat: 53.1432439, lng: 8.2214212 };
@@ -98,6 +100,9 @@ export class HausMapComponent implements OnInit {
     this.destenyInput = this.addresService.parkhausname;
     this.serchAddres();
     this.setMaker();
+    console.log(this.tmp.replace(/([. *+?^=!:${}()|\[\]\/\\])/g, ''));
+    var audio = new Audio('assets/audio01.mp3');
+    audio.play();
   }
 
   carePositsion() {

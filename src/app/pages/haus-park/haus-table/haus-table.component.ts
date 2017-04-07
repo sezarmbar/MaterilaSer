@@ -26,7 +26,7 @@ export class HausTableComponent implements OnInit {
   ngOnInit() {
     this.callService() ;
     // this.sideMap.currentlocationFind();
-    this.subscription = Observable.interval(2000 * 60).subscribe(x => {
+    this.subscription = Observable.interval(1000 * 60).subscribe(x => {
       this.callService();
     });
   }
