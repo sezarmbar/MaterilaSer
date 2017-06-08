@@ -101,8 +101,8 @@ export class HausMapComponent implements OnInit {
     this.serchAddres();
     this.setMaker();
     console.log(this.tmp.replace(/([. *+?^=!:${}()|\[\]\/\\])/g, ''));
-    var audio = new Audio('assets/audio01.mp3');
-    audio.play();
+    // var audio = new Audio('assets/audio01.mp3');
+    // audio.play();
   }
 
   carePositsion() {
@@ -251,6 +251,7 @@ export class HausMapComponent implements OnInit {
     this.grosseUmleitungenShow = false;
   }
   mapClicked($event) {
+    console.log(this.freiParkPlatz)
     this.isClicked = false;
     if (this.lastClicked) {
       this.lastClicked.close();

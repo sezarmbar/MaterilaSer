@@ -1,0 +1,7 @@
+{
+    "/viewer/*":{
+        "target":"http://gis4oldenburg.oldenburg.de",
+        "secure":false,
+        "logLevel":"debug"
+    }
+}

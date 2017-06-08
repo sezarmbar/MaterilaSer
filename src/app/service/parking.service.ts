@@ -2,7 +2,7 @@ import { Injectable, OnInit } from '@angular/core';
 import { Http, Headers, Response, URLSearchParams } from '@angular/http';
 // import {Observable} from "rxjs/Rx";
 import 'rxjs/Rx';
-import { ReplaySubject } from 'rxjs';
+// import { ReplaySubject } from 'rxjs';
 import { Observable } from 'rxjs/Observable';
 
 import { Markers, Strassen } from './index';
@@ -14,12 +14,16 @@ declare var xml2json: any;
 export class ParkingsService implements OnInit {
   markerUrl = 'http://gis4oldenburg.oldenburg.de/viewer/php/getmarker.php';
   infoMarkerUrl = 'http://gis4oldenburg.oldenburg.de/viewer/php/ajax_control.php';
-  ajax_control = 'http://gis4oldenburg.oldenburg.de/viewer/php/ajax_control.php'
+  ajax_control = 'http://gis4oldenburg.oldenburg.de/viewer/php/ajax_control.php';
+  // url = "http://oldenburg-service.de/proxy-to-gis.php?url=http://gis4oldenburg.oldenburg.de/viewer/php/";
+  // markerUrl =this.url + 'getmarker.php';
+  // infoMarkerUrl =this.url+ 'ajax_control.php';
+  // ajax_control =this.url+ 'ajax_control.php';
   constructor(private http: Http) { }
   ngOnInit() { }
 
   getParks() {
-    return this.http.get('http://oldenburg-service.de/cros.php')
+    return this.http.get('https://oldenburg-service.de/cros.php')
       .map(res => JSON.parse(xml2json(res.text(), '  ')));
   }
   private handleError(error: Response | any) {
