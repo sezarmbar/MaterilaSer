@@ -1,9 +1,5 @@
 <div class="swiper-container">
         <div class="swiper-wrapper">
-            <!--<div class="swiper-slide" style="background-image:url(assets/slids/City/pic1.jpg)"></div>
-            <div class="swiper-slide" style="background-image:url(assets/slids/City/pic2.jpg"></div>
-            <div class="swiper-slide" style="background-image:url(assets/slids/City/pic3.jpg)"></div>-->
-
             <div class="swiper-slide"  *ngFor="let num of picNumObj" >
                 <img src="assets/slids/{{picFileName}}/pic{{num+1}}.jpg"  height="250" width="320">
             </div>

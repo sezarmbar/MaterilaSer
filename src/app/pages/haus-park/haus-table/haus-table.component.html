@@ -1,18 +1,9 @@
   <md-sidenav-container class="app-layout"  >    
     <md-sidenav #sidenavEnd mode="over" class="app-sidenav"  tabindex="-1" align="end" (close)="onCloseSidenavEnd()">
       
-      <md-tab-group #tabsEnd (selectChange)="onSelectChange($event)" [selectedIndex]="selectedIndex">
-        <md-tab label="Karte">
-          <div (swiperight)="sidenavEnd.close()" align="center">
-              <h2> {{currentPark.Name | parkHausName}}</h2>
-           </div>
-          <div (swiperight)="sidenavEnd.close()"> 
-             <div routerLink="/hausmap">
-              <side-map [elPlanRout]='elPlanRout'></side-map>
-            </div>
-            <div id="right-panel" class="flexcroll" #planRout></div> 
-          </div>
-        </md-tab>
+      <md-tab-group #tabsEnd [selectedIndex]="selectedIndex">
+      <!--<md-tab-group #tabsEnd (selectChange)="onSelectChange($event)" [selectedIndex]="selectedIndex">-->
+        
         <md-tab label="Info" >
            <table (swiperight)="sidenavEnd.close()">
               <tr>
@@ -33,9 +24,21 @@
             </table>
           <app-slider *ngIf="slideInit" ></app-slider>
           <div style="height: calc(100vh - 590px);" (swiperight)="sidenavEnd.close()"> 
-
           </div>
         </md-tab>
+
+        <md-tab label="Karte">
+          <div (swiperight)="sidenavEnd.close()" align="center">
+              <h2> {{currentPark.Name | parkHausName}}</h2>
+           </div>
+          <div (swiperight)="sidenavEnd.close()"> 
+             <div routerLink="/hausmap">
+              <side-map [elPlanRout]='elPlanRout'></side-map>
+            </div>
+            <div id="right-panel" class="flexcroll" #planRout></div> 
+          </div>
+        </md-tab>
+
       </md-tab-group>
     </md-sidenav>
     <div class="app-content">
@@ -61,7 +64,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let park of Parkhaus" (click)="showPark(park);sideMap.serchAddres(park.Name);" [hidden]="park.Name=='Ratsherren'|| park.Name=='Altes Gymnasium'" [ngClass]="park | opencloseFilter" >
+          <tr *ngFor="let park of Parkhaus" (click)="addresService.setParkHausName(park.Name);onOpenSidenavEnd();showPark(park);sideMap.serchAddres(park.Name);" [hidden]="park.Name=='Ratsherren'|| park.Name=='Altes Gymnasium'" [ngClass]="park | opencloseFilter" >
             <td>{{park.Name | parkHausName}} </td>
             <td [ngClass]="park.Gesamt-park.Aktuell | freiplatzeFilter">{{park.Gesamt-park.Aktuell}}</td>
             <td > <img src="./assets/img/pfeil-{{park.Trend}}.gif"  height="15" width="15"/></td>

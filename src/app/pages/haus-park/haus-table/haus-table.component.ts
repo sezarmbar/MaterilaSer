@@ -40,17 +40,24 @@ export class HausTableComponent implements OnInit {
   }
   onCloseSidenavEnd(){
     this.tabEnd.selectedIndex = 0;
+    this.slideInit = false;
+    this.addresService.setParkHausName("");
+  }
+  onOpenSidenavEnd(){
+    
   }
   showPark(park) {
-    this.currentPark=park; 
     this.addresService.setParkHausName(park.Name);
+    this.currentPark=park; 
     this.sidenav.open();
+    this.slideInit = true;
   }
   onSelectChange = (event: any): void => {
-    if(event.index === 1 ){
+    if(event.index === 0 ){
+      console.log(event.index)
       this.slideInit = true;
     }else{
-      this.slideInit = false;
+      this.slideInit = true;
     }
   }
   ngOnDestroy() {

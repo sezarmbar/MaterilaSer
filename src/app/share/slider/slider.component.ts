@@ -19,12 +19,18 @@ export class SliderComponent implements AfterViewInit {
   constructor(private service:ParkingsService,private addresService:addresShared) {}
 
   ngOnInit(){
+     this.picFileNameFun();
+  }
+
+  picFileNameFun(parkhausname ?){
     this.picFileName = localStorage.getItem('parkhausname');
+    if(parkhausname != undefined)
+      this.picFileName = parkhausname;
     this.serchPicNum();
     this.picNumObj =Array.from(Array(this.picNum),(x,i)=>i);
   }
+
   ngAfterViewInit() {
-      
       let swiper = new Swiper('.swiper-container', {
         pagination: '.swiper-pagination',
         paginationClickable: true,

@@ -19,12 +19,12 @@
   </md-toolbar>-->
 <ul>
   <li *ngIf="!menuIcon"(click)="sidenavStart.toggle()" ><a><i class="material-icons app-toolbar-menu" >menu</i></a></li>
-  <li><a routerLink="/" style="font-size: 1.5em; margin-top: -6px"  >Oldenburg Verkehr</a></li>
+  <li><a routerLink="/" style="font-size: 1.5em; margin-top: -6px"  >Stadt Oldenburg</a></li>
   <div class="navbar-style" *ngIf="menuSwich">
   <li><a routerLink="/hauspark">Parkhäuser</a></li>
   <li><a routerLink="/hausmap" >Karte</a></li>
-  <li *ngIf="!isDarkTheme"><a  (click)="switchThem()" >Nacht-Modus</a></li>
-  <li *ngIf="isDarkTheme"><a  (click)="switchThem()">Hell-Modus</a></li>
+  <li><a  (click)="switchThem()" >Tag-Modus</a></li>
+  <!--<li *ngIf="isDarkTheme"><a  (click)="switchThem()">Hell-Modus</a></li>-->
   </div>
 </ul>
 
