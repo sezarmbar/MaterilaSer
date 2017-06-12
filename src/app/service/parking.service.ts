@@ -24,6 +24,7 @@ export class ParkingsService implements OnInit {
 
   getParks() {
     return this.http.get('https://oldenburg-service.de/cros.php')
+    // return this.http.get('assets/pls.xml')
       .map(res => JSON.parse(xml2json(res.text(), '  ')));
   }
   private handleError(error: Response | any) {

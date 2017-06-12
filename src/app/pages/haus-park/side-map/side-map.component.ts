@@ -58,6 +58,7 @@ export class SideMapComponent implements OnInit {
   }
 
   serchAddres(destenyInput){
+    console.log(destenyInput)
      for(var i =0;i<this.parkhauseAddreses.length;i++){
        let parkHaus = this.parkhauseAddreses[i];
        if(parkHaus.name===destenyInput){

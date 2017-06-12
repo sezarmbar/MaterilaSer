@@ -16,6 +16,7 @@ export class HausTableComponent implements OnInit {
    @ViewChild('planRout') elPlanRout:ElementRef;
    @ViewChild(SideMapComponent) sideMap;
    @ViewChild(SliderComponent) sliderChild;
+   private sideMapShow:boolean = false;
    private slideInit:boolean = false;
    private Parkhaus:any;
    private lastTime:any;
@@ -41,10 +42,17 @@ export class HausTableComponent implements OnInit {
   onCloseSidenavEnd(){
     this.tabEnd.selectedIndex = 0;
     this.slideInit = false;
+    this.sideMapShow=false;
     this.addresService.setParkHausName("");
   }
-  onOpenSidenavEnd(){
-    
+  onOpenSidenavEnd(park){
+    if(this.sideMap != undefined ){
+    this.sideMap.serchAddres(park.Name);
+    }
+  }
+  mapShow(){
+    console.log("mapshoe")
+    this.sideMapShow= true;
   }
   showPark(park) {
     this.addresService.setParkHausName(park.Name);

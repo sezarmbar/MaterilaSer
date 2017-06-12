@@ -1,30 +1,12 @@
-
-  <!--<app-navbar [class.mat-elevation-z6]="showShadow"></app-navbar>-->
-
-  <!--<md-toolbar color="primary" role="toolbar"  >
-    <button class="app-icon-button" (click)="sidenavStart.toggle()" *ngIf="!menuIcon">
-      <i class="material-icons app-toolbar-menu">menu</i>
-    </button>
-   <div routerLink="/">Oldenburg</div> 
-    
-    <span class="app-toolbar-filler"></span>
-    <div *ngIf="menuSwich">
-   
-      <button md-button routerLink="/hauspark">ParkHaus</button>
-      <button md-button routerLink="/hausmap">Karte</button>    
-      <button md-button (click)="switchThem()" *ngIf="!isDarkTheme" >Nacht-Modus</button>
-      <button md-button (click)="switchThem()" *ngIf="isDarkTheme" >Hell-Modus</button>
-
-    </div>
-  </md-toolbar>-->
+<div (window:resize)="onResize($event)">
 <ul>
   <li *ngIf="!menuIcon"(click)="sidenavStart.toggle()" ><a><i class="material-icons app-toolbar-menu" >menu</i></a></li>
   <li><a routerLink="/" style="font-size: 1.5em; margin-top: -6px"  >Stadt Oldenburg</a></li>
   <div class="navbar-style" *ngIf="menuSwich">
   <li><a routerLink="/hauspark">Parkhäuser</a></li>
   <li><a routerLink="/hausmap" >Karte</a></li>
-  <li><a  (click)="switchThem()" >Tag-Modus</a></li>
-  <!--<li *ngIf="isDarkTheme"><a  (click)="switchThem()">Hell-Modus</a></li>-->
+  <li *ngIf="isDarkTheme"><a  (click)="switchThem()"  >Tag-Modus</a></li>
+  <li *ngIf="!isDarkTheme"><a  (click)="switchThem()">Nacht-Modus</a></li>
   </div>
 </ul>
 
@@ -33,11 +15,11 @@
     <div style="height: 100%" (swipeleft)="sidenavStart.close()" align="center"> 
       <div (click)="sidenavStart.toggle()">
         <!--<md-list-item> <button md-button routerLink="/home">Home</button> </md-list-item>-->
-        <md-list-item> <button md-button routerLink="/hauspark">ParkHaus</button> </md-list-item>
+        <md-list-item> <button md-button routerLink="/hauspark">Parkhaus</button> </md-list-item>
         <md-list-item> <button md-button routerLink="/hausmap">Map</button> </md-list-item>
       </div>
         <button md-button (click)="switchThem()" *ngIf="!isDarkTheme">Nacht-Modus</button>
-        <button md-button (click)="switchThem()" *ngIf="isDarkTheme">Hell-Modus</button>
+        <button md-button (click)="switchThem()" *ngIf="isDarkTheme">Tag-Modus</button>
       </div>
     </md-sidenav>
    
@@ -49,7 +31,7 @@
   </md-sidenav-container>
 
 
-
+</div>
   <!--<span class="app-action" [class.m2app-dark]="isDarkTheme">
     <button md-fab><md-icon>check circle</md-icon></button>
   </span>-->

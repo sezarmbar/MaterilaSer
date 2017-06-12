@@ -18,17 +18,28 @@ export class AppComponent {
  private menuIcon : boolean = false;
  showShadow = true;
   ngOnInit(){
-
+   
     if(this.getIsDarkTheme()=== undefined){
       this.setIsDarkTheme(this.isDarkTheme);
     }else{
       this.isDarkTheme = this.getIsDarkTheme();
     }
-    if (window.screen.width > 900) {
+      this.resize();
+  }
+onResize(event) { 
+  if (event.target.innerWidth > 600) {
       this.menuSwich = true;
       this.menuIcon = true;
-    }
-
+     }else{
+       this.menuSwich = false;
+      this.menuIcon = false;
+     }
+}
+  resize(){
+     if (window.screen.width > 900) {
+      this.menuSwich = !this.menuSwich;
+      this.menuIcon = !this.menuIcon;
+     }
   }
 
   switchThem(){
