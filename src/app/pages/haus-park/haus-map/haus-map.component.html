@@ -1,129 +1,123 @@
 <md-sidenav-container class="app-layout">
-    <md-sidenav mode="side" #sidenav>
-        <div class="sidenavPosition" align='center'>
-            <h1>
-                Oldenburg
-            </h1>
-            <button md-mini-fab class="btnclose" (click)="closeOpenSidenave()" *ngIf="opened">
+  <md-sidenav mode="side" #sidenav>
+    <div class="sidenavPosition" align='center'>
+      <h1>
+        Oldenburg
+      </h1>
+      <button md-mini-fab class="btnclose" (click)="closeOpenSidenave()" *ngIf="opened">
                 <md-icon>{{btnSideNave}}</md-icon>
             </button>
-            <!--<button md-raised-button routerLink="." (click)="clearDirection()" class="tthem-color" >Reset Directions</button>-->
-            <button md-raised-button routerLink="." (click)="carePositsion()" class="tthem-color" *ngIf="!(addresService.autoPosition.autoPoLat)">Mein Auto Position</button>
-            <button md-raised-button routerLink="." (click)="toAuto()" color="primary" *ngIf="(addresService.autoPosition.autoPoLat)">Zum Auto</button>
-            <button md-raised-button routerLink="." (click)="resetPos()" class="tthem-color" *ngIf="(addresService.autoPosition.autoPoLat)">Reset Mein Auto Position</button>
-            
-            
-        </div>
-        <div id="right-panel" class="flexcroll" #planRoutMap></div>
-    </md-sidenav>
-    <md-sidenav mode="side" #sidenavEnd align="end">
-        <div class="sideEnd-layout" align='center' (swiperight)="closeOpenSidenaveEnd()">
-            <h1>
-                Oldenburg
-            </h1>
-            <md-list>
-                <md-list-item>                    
-                    <md-checkbox class="example-margin" [(ngModel)]="parksFBehindertesShow" (change)="chckeMrkerGroup()">
-                        <img src="http://gis4oldenburg.oldenburg.de/mandant/musterstadt_oldenburg/images/poi/1398877145.jpg" width="24" height="30">                        
-                        Parkplätze für Behinderte</md-checkbox>
-                </md-list-item>
-                <md-list-item>
-                    <md-checkbox class="example-margin" [(ngModel)]="freiParkPlatzShow"(change)="chckeMrkerGroup()">
-                        <img src="http://gis4oldenburg.oldenburg.de/mandant/musterstadt_oldenburg/images/poi/2.gif" width="24" height="24">
-                        Parkplätze kostenfrei</md-checkbox>
-                </md-list-item>
-                <md-list-item>
-                    <md-checkbox class="example-margin" [(ngModel)]="parkPlatzShow"(change)="chckeMrkerGroup()">
-                        <img src="http://gis4oldenburg.oldenburg.de/mandant/musterstadt_oldenburg/images/poi/2.gif" width="24" height="24">
-                        Parkplätze </md-checkbox>
-                </md-list-item>
-                <md-list-item>
-                    <md-checkbox class="example-margin" [(ngModel)]="ParkHauseShow"(change)="chckeMrkerGroup()">
-                        <img src="http://gis4oldenburg.oldenburg.de/mandant/musterstadt_oldenburg/images/poi/1.gif" width="24" height="24">
-                        Parkhäuser </md-checkbox>
-                </md-list-item>
-                <md-list-item>
-                    <md-checkbox class="example-margin" [(ngModel)]="strassensperrungShow"(change)="chckeMrkerGroup()">
-                        <img src="./assets/sperrung.jpg" width="24" height="24">
-                        Straßensperrung </md-checkbox>
-                </md-list-item>
-                <md-list-item>
-                    <md-checkbox class="example-margin" [(ngModel)]="grosseUmleitungenShow"(change)="chckeMrkerGroup()">
-                        <img src="./assets/umleit.png" width="24" height="24">
-                        Große Umleitungen  </md-checkbox>
-                </md-list-item>
-            </md-list>
-        </div>
-        <button md-mini-fab class="btncloseEnd" (click)="closeOpenSidenaveEnd()" *ngIf="openedEnd">
+      <!--<button md-raised-button routerLink="." (click)="clearDirection()" class="tthem-color" >Reset Directions</button>-->
+      <button md-raised-button routerLink="." (click)="carePositsion()" class="tthem-color" *ngIf="!(addresService.autoPosition.autoPoLat)">Mein Auto Position</button>
+      <button md-raised-button routerLink="." (click)="toAuto()" color="primary" *ngIf="(addresService.autoPosition.autoPoLat)">Zum Auto</button>
+      <button md-raised-button routerLink="." (click)="resetPos()" class="tthem-color" *ngIf="(addresService.autoPosition.autoPoLat)">Reset Mein Auto Position</button>
+
+
+    </div>
+    <div id="right-panel" class="flexcroll" #planRoutMap></div>
+  </md-sidenav>
+  <md-sidenav mode="side" #sidenavEnd align="end">
+    <div class="sideEnd-layout" align='center' (swiperight)="closeOpenSidenaveEnd()">
+      <h1>
+        Oldenburg
+      </h1>
+      <md-list>
+        <md-list-item>
+          <md-checkbox class="example-margin" [(ngModel)]="parksFBehindertesShow" (change)="chckeMrkerGroup()">
+            <img src="http://gis4oldenburg.oldenburg.de/mandant/musterstadt_oldenburg/images/poi/1398877145.jpg" width="24" height="30">            Parkplätze für Behinderte</md-checkbox>
+        </md-list-item>
+        <md-list-item>
+          <md-checkbox class="example-margin" [(ngModel)]="freiParkPlatzShow" (change)="chckeMrkerGroup()">
+            <img src="http://gis4oldenburg.oldenburg.de/mandant/musterstadt_oldenburg/images/poi/2.gif" width="24" height="24">            Parkplätze kostenfrei</md-checkbox>
+        </md-list-item>
+        <md-list-item>
+          <md-checkbox class="example-margin" [(ngModel)]="parkPlatzShow" (change)="chckeMrkerGroup()">
+            <img src="http://gis4oldenburg.oldenburg.de/mandant/musterstadt_oldenburg/images/poi/2.gif" width="24" height="24">            Parkplätze </md-checkbox>
+        </md-list-item>
+        <md-list-item>
+          <md-checkbox class="example-margin" [(ngModel)]="ParkHauseShow" (change)="chckeMrkerGroup()">
+            <img src="http://gis4oldenburg.oldenburg.de/mandant/musterstadt_oldenburg/images/poi/1.gif" width="24" height="24">            Parkhäuser </md-checkbox>
+        </md-list-item>
+        <md-list-item>
+          <md-checkbox class="example-margin" [(ngModel)]="strassensperrungShow" (change)="chckeMrkerGroup()">
+            <img src="./assets/sperrung.jpg" width="24" height="24"> Straßensperrung </md-checkbox>
+        </md-list-item>
+        <md-list-item>
+          <md-checkbox class="example-margin" [(ngModel)]="grosseUmleitungenShow" (change)="chckeMrkerGroup()">
+            <img src="./assets/umleit.png" width="24" height="24"> Große Umleitungen </md-checkbox>
+        </md-list-item>
+      </md-list>
+    </div>
+    <button md-mini-fab class="btncloseEnd" (click)="closeOpenSidenaveEnd()" *ngIf="openedEnd">
             <md-icon>{{btnSideNaveEnd}}</md-icon>
         </button>
-    </md-sidenav>
-    <button md-mini-fab class="btnOpen" (click)="closeOpenSidenave()" *ngIf="!opened">
+  </md-sidenav>
+  <button md-mini-fab class="btnOpen" (click)="closeOpenSidenave()" *ngIf="!opened">
         <md-icon>{{btnSideNave}}</md-icon>
     </button>
-    <button md-mini-fab class="btnOpenEnd" (click)="closeOpenSidenaveEnd()" *ngIf="!openedEnd">
+  <!-- <button md-mini-fab class="btnOpenEnd" (click)="closeOpenSidenaveEnd()" *ngIf="!openedEnd">
         <md-icon>{{btnSideNaveEnd}}</md-icon>
-    </button>
-    <!--Map-->
-    <sebm-google-map class="sebm-google-map-map" [latitude]="oldenburgLatLng.lat" [longitude]="oldenburgLatLng.lng" [zoom]="zoom" [styles]="styleArray"
-        (mapClick)="mapClicked($event)">
-        <!--Marker-->
-        <sebm-google-map-marker [latitude]="markerPos.lat" [longitude]="markerPos.lng" [iconUrl]="markerIcon"></sebm-google-map-marker>
-        <!--parksFBehindertes-->
-        <div *ngIf="parksFBehindertesShow">
-            <sebm-google-map-marker *ngFor="let pFB of parksFBehindertes; let i = index" [latitude]="pFB.lat" [longitude]="pFB.lon" [iconUrl]="pFB.file"
-                (markerClick)="getInfoMarker(pFB.id,infowindow,pFB.ukat)">
-                <sebm-google-map-info-window #infowindow >
-                    <div [innerHTML]="infoMarker"></div>
-                    <button md-raised-button (click)="toCurrentMarker(pFB)">Fahrren</button>
-                    <p></p>
-                    
-                </sebm-google-map-info-window>
-            </sebm-google-map-marker>
-        </div>
-        <!--freiParkPlatz-->
-        <div *ngIf="freiParkPlatzShow">
-            <sebm-google-map-marker *ngFor="let fPP of freiParkPlatz; let i = index" [latitude]="fPP.lat" [longitude]="fPP.lon" [iconUrl]="fPP.file"
-                (markerClick)="getInfoMarker(fPP.id,infowindow,fPP.ukat)">
-                <sebm-google-map-info-window #infowindow >
-                    <div [innerHTML]="infoMarker"></div>
-                    <button md-raised-button (click)="toCurrentMarker(fPP)">Fahrren</button>
-                    <p></p>
-                </sebm-google-map-info-window>
-            </sebm-google-map-marker>
-        </div>
-        <!--ParkPlatz-->
-        <div *ngIf="parkPlatzShow">
-            <sebm-google-map-marker *ngFor="let pP of parkPlatz; let i = index" [latitude]="pP.lat" [longitude]="pP.lon" [iconUrl]="pP.file"
-                (markerClick)="getInfoMarker(pP.id,infowindow,pP.ukat)">
-                <sebm-google-map-info-window #infowindow >
-                    <div [innerHTML]="infoMarker"></div>
-                    <button md-raised-button (click)="toCurrentMarker(pP)">Fahrren</button>
-                    <p></p>                    
-                </sebm-google-map-info-window>
-            </sebm-google-map-marker>
-        </div>
-        <!--ParkHause-->
-        <div *ngIf="ParkHauseShow">
-            <sebm-google-map-marker *ngFor="let pH of parkHause; let i = index" [latitude]="pH.lat" [longitude]="pH.lon" [iconUrl]="pH.file"
-                (markerClick)="getInfoMarker(pH.id,infowindow,pH.ukat)">
-                <sebm-google-map-info-window #infowindow >
-                    <div [innerHTML]="infoMarker"></div>
-                    <button md-raised-button (click)="toCurrentMarker(pH)">Fahrren</button>
-                    <p></p>
-                </sebm-google-map-info-window>
-            </sebm-google-map-marker>
-        </div>
+    </button> -->
+  <!--Map-->
+  <sebm-google-map class="sebm-google-map-map" [latitude]="oldenburgLatLng.lat" [longitude]="oldenburgLatLng.lng" [zoom]="zoom"
+    [styles]="styleArray" (mapClick)="mapClicked($event)">
+    <!--Marker-->
+    <sebm-google-map-marker [latitude]="markerPos.lat" [longitude]="markerPos.lng" [iconUrl]="markerIcon"></sebm-google-map-marker>
+    <!--parksFBehindertes-->
+    <div *ngIf="parksFBehindertesShow">
+      <sebm-google-map-marker *ngFor="let pFB of parksFBehindertes; let i = index" [latitude]="pFB.lat" [longitude]="pFB.lon" [iconUrl]="pFB.file"
+        (markerClick)="getInfoMarker(pFB.id,infowindow,pFB.ukat)">
+        <sebm-google-map-info-window #infowindow>
+          <div [innerHTML]="infoMarker"></div>
+          <button md-raised-button (click)="toCurrentMarker(pFB)">Fahrren</button>
+          <p></p>
 
-        <!--polyline-->
-        <div *ngIf="strassensperrungShow">
-            <sebm-google-map-json-polyline [lines]="strassensperrung" [strokeColor]="strassensperrungColor"></sebm-google-map-json-polyline>
-        </div>
-        <div *ngIf="grosseUmleitungenShow">
-            <sebm-google-map-json-polyline [lines]="grosseUmleitungen" [strokeColor]="grosseUmleitungenColor"></sebm-google-map-json-polyline>
-        </div>
-        <!--Direction-->
-        <sebm-google-map-directions [origin]="origin" [destination]="destination" [directionsDisplay]="directionsDisplay" [elPlanRout]="elPlanRout"
-            [infoMarker]="infoMarker"></sebm-google-map-directions>
-    </sebm-google-map>
+        </sebm-google-map-info-window>
+      </sebm-google-map-marker>
+    </div>
+    <!--freiParkPlatz-->
+    <div *ngIf="freiParkPlatzShow">
+      <sebm-google-map-marker *ngFor="let fPP of freiParkPlatz; let i = index" [latitude]="fPP.lat" [longitude]="fPP.lon" [iconUrl]="fPP.file"
+        (markerClick)="getInfoMarker(fPP.id,infowindow,fPP.ukat)">
+        <sebm-google-map-info-window #infowindow>
+          <div [innerHTML]="infoMarker"></div>
+          <button md-raised-button (click)="toCurrentMarker(fPP)">Fahrren</button>
+          <p></p>
+        </sebm-google-map-info-window>
+      </sebm-google-map-marker>
+    </div>
+    <!--ParkPlatz-->
+    <div *ngIf="parkPlatzShow">
+      <sebm-google-map-marker *ngFor="let pP of parkPlatz; let i = index" [latitude]="pP.lat" [longitude]="pP.lon" [iconUrl]="pP.file"
+        (markerClick)="getInfoMarker(pP.id,infowindow,pP.ukat)">
+        <sebm-google-map-info-window #infowindow>
+          <div [innerHTML]="infoMarker"></div>
+          <button md-raised-button (click)="toCurrentMarker(pP)">Fahrren</button>
+          <p></p>
+        </sebm-google-map-info-window>
+      </sebm-google-map-marker>
+    </div>
+    <!--ParkHause-->
+    <div *ngIf="ParkHauseShow">
+      <sebm-google-map-marker *ngFor="let pH of parkHause; let i = index" [latitude]="pH.lat" [longitude]="pH.lon" [iconUrl]="pH.file"
+        (markerClick)="getInfoMarker(pH.id,infowindow,pH.ukat)">
+        <sebm-google-map-info-window #infowindow>
+          <div [innerHTML]="infoMarker"></div>
+          <button md-raised-button (click)="toCurrentMarker(pH)">Fahrren</button>
+          <p></p>
+        </sebm-google-map-info-window>
+      </sebm-google-map-marker>
+    </div>
+
+    <!--polyline-->
+    <div *ngIf="strassensperrungShow">
+      <sebm-google-map-json-polyline [lines]="strassensperrung" [strokeColor]="strassensperrungColor"></sebm-google-map-json-polyline>
+    </div>
+    <div *ngIf="grosseUmleitungenShow">
+      <sebm-google-map-json-polyline [lines]="grosseUmleitungen" [strokeColor]="grosseUmleitungenColor"></sebm-google-map-json-polyline>
+    </div>
+    <!--Direction-->
+    <sebm-google-map-directions [origin]="origin" [destination]="destination" [directionsDisplay]="directionsDisplay" [elPlanRout]="elPlanRout"
+      [infoMarker]="infoMarker"></sebm-google-map-directions>
+  </sebm-google-map>
 </md-sidenav-container>

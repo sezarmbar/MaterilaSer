@@ -1,6 +1,8 @@
   <md-sidenav-container class="app-layout"  >    
     <md-sidenav #sidenavEnd mode="over" class="app-sidenav"  tabindex="-1" align="end" (close)="onCloseSidenavEnd()">
-      
+      <button md-mini-fab class="btnclose" (click)="closeSidenave()" >
+                <md-icon style="padding-left: 0px">chevron_right</md-icon>
+            </button>
       <md-tab-group #tabsEnd ([selectedIndex])="selectedIndex"(selectChange)="mapShow()" >
       <!--<md-tab-group #tabsEnd (selectChange)="onSelectChange($event)" [selectedIndex]="selectedIndex">-->
         
@@ -17,9 +19,9 @@
               <th>Status</th>
              </tr> 
              <tr [ngClass]="currentPark | opencloseFilter" > 
-              <td [ngClass]="currentPark.Gesamt-currentPark.Aktuell | freiplatzeFilter"><h4>{{currentPark.Gesamt-currentPark.Aktuell}}</h4></td>
+              <td [ngClass]="currentPark.Gesamt-currentPark.Aktuell | freiplatzeFilter"><h4>{{currentPark.Gesamt-currentPark.Aktuell | FreiPlatz}}</h4></td>
               <td ><img  *ngIf="!(currentPark.Name == null)" src="./assets/img/pfeil-{{currentPark.Trend}}.gif"  height="30" width="30"/></td>
-              <td [ngClass]="currentPark.Status | statusFilter "> <h4>{{currentPark.Status}}</h4></td>
+              <td [ngClass]="currentPark.Status | statusFilter "> <h4>{{currentPark.Status | statusNameFilter}}</h4></td>
              </tr> 
             </table>
           <app-slider *ngIf="slideInit" ></app-slider>
@@ -27,13 +29,13 @@
           </div>
         </md-tab>
 
-        <md-tab label="Karte">
+        <md-tab label="Karte" >
           <div (swiperight)="sidenavEnd.close()" align="center">
               <h2> {{currentPark.Name | parkHausName}}</h2>
            </div>
           <div (swiperight)="sidenavEnd.close()"> 
              <div routerLink="/hausmap">
-              <side-map *ngIf="sideMapShow" [elPlanRout]='elPlanRout'></side-map>
+              <side-map *ngIf="sideMapShow" [parkNane]="currentParkName"[elPlanRout]='elPlanRout'></side-map>
             </div>
             <div id="right-panel" class="flexcroll" #planRout></div> 
           </div>
@@ -53,7 +55,11 @@
         <tr>
           <td>Letzte Aktualisierung:{{lastTime}}</td>
         </tr>
-      </table>  
+      </table>
+         
+          <div class="infofortable">Klicken Sie auf den Namen des Parkhauses für weitere Details</div>
+        
+    
       <table class="dataTable">
         <thead>
           <tr>
@@ -66,13 +72,12 @@
         <tbody>
           <tr *ngFor="let park of Parkhaus" (click)="addresService.setParkHausName(park.Name);onOpenSidenavEnd(park);showPark(park);" [hidden]="park.Name=='Ratsherren'|| park.Name=='Altes Gymnasium'" [ngClass]="park | opencloseFilter" >
             <td>{{park.Name | parkHausName}} </td>
-            <td [ngClass]="park.Gesamt-park.Aktuell | freiplatzeFilter">{{park.Gesamt-park.Aktuell}}</td>
+            <td [ngClass]="park.Gesamt-park.Aktuell | freiplatzeFilter">{{park.Gesamt-park.Aktuell | FreiPlatz}}</td>
             <td > <img src="./assets/img/pfeil-{{park.Trend}}.gif"  height="15" width="15"/></td>
-            <td [ngClass]="park.Status | statusFilter ">{{park.Status}}</td>
+            <td [ngClass]="park.Status | statusFilter ">{{park.Status | statusNameFilter}}</td>
           </tr>
         </tbody>
       </table>
-   
-
     </div>
+    <!--<div class="heightfix"></div>-->
   </md-sidenav-container>

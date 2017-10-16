@@ -1,11 +1,17 @@
-import { Injectable, OnInit } from '@angular/core';
-import { Http, Headers, Response, URLSearchParams } from '@angular/http';
-// import {Observable} from "rxjs/Rx";
 import 'rxjs/Rx';
-// import { ReplaySubject } from 'rxjs';
+
+import { Headers, Http, Response, URLSearchParams } from '@angular/http';
+import { Injectable, OnInit } from '@angular/core';
+import { Markers, Strassen } from './index';
+
 import { Observable } from 'rxjs/Observable';
 
-import { Markers, Strassen } from './index';
+// import {Observable} from "rxjs/Rx";
+
+// import { ReplaySubject } from 'rxjs';
+
+
+
 
 declare var xml2json: any;
 
@@ -23,7 +29,7 @@ export class ParkingsService implements OnInit {
   ngOnInit() { }
 
   getParks() {
-    return this.http.get('https://oldenburg-service.de/cros.php')
+    return this.http.get('http://oldenburg-service.de/cros.php')
     // return this.http.get('assets/pls.xml')
       .map(res => JSON.parse(xml2json(res.text(), '  ')));
   }

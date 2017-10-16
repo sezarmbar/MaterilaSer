@@ -12,11 +12,12 @@ declare var google:any;
 })
 export class SideMapComponent implements OnInit {
  @Input() elPlanRout:any;
+ @Input() parkNane:any;
  public parkhauseAddreses = ADDRESES;
  public title: string = 'oldenburg';
  public oldenburgLat: number = 53.1432439 ;
  public oldenburgLng: number = 8.2214212 ;
- public zoom: number = 14;
+ public zoom: number = 16;
 //  public destLat: number ;
 //  public destLng: number ;
  public oriLat: number;
@@ -53,14 +54,16 @@ export class SideMapComponent implements OnInit {
   }
   
   ngOnInit() {
+  console.log("commponennt init")
+    
     this.sideelPlanRout = this.elPlanRout;
     this.currentlocationFind();
   }
 
   serchAddres(destenyInput){
-    console.log(destenyInput)
      for(var i =0;i<this.parkhauseAddreses.length;i++){
        let parkHaus = this.parkhauseAddreses[i];
+      //  if(parkHaus.name===this.parkNane){
        if(parkHaus.name===destenyInput){
         //  this.destLat = Number(parkHaus.lat);
         //  this.destLng = Number(parkHaus.lng);
@@ -68,7 +71,7 @@ export class SideMapComponent implements OnInit {
          this.destination.lng = Number(parkHaus.lng);
        }
      }
-     
+    //  if(this.destination.lat)
      this.directionRender.renderDirection();
    }
 
@@ -86,6 +89,9 @@ export class SideMapComponent implements OnInit {
    setLatLng(lat:number, lng:number) {
         this.oriLat = lat;
         this.oriLng = lng;
+    }
+    ngOnDestroy(){
+      console.log("commponennt destroyed")
     }
 
 }

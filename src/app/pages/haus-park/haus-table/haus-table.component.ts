@@ -1,4 +1,5 @@
 import { Component, OnInit , ViewChild, ElementRef } from '@angular/core';
+import {Router} from '@angular/router';
 import {Observable} from 'rxjs/Rx';
 import {MdSidenav,MdTabGroup} from "@angular/material";
 import { SliderComponent } from '../../../share/slider';
@@ -16,17 +17,17 @@ export class HausTableComponent implements OnInit {
    @ViewChild('planRout') elPlanRout:ElementRef;
    @ViewChild(SideMapComponent) sideMap;
    @ViewChild(SliderComponent) sliderChild;
-   private sideMapShow:boolean = false;
+   private sideMapShow:boolean = true;
    private slideInit:boolean = false;
    private Parkhaus:any;
    private lastTime:any;
    private currentPark={};
+   private currentParkName:any;
    private subscription;
-   constructor(private service:ParkingsService,private addresService:addresShared) {}
+   constructor(private service:ParkingsService,private addresService:addresShared,private router:Router) {}
 
   ngOnInit() {
     this.callService() ;
-    // this.sideMap.currentlocationFind();
     this.subscription = Observable.interval(1000 * 60).subscribe(x => {
       this.callService();
     });
@@ -39,20 +40,20 @@ export class HausTableComponent implements OnInit {
         this.lastTime = parkings.Daten.Zeitstempel;
       });
   }
+  closeSidenave(){
+    this.sidenav.close();
+  }
   onCloseSidenavEnd(){
     this.tabEnd.selectedIndex = 0;
     this.slideInit = false;
-    this.sideMapShow=false;
     this.addresService.setParkHausName("");
   }
   onOpenSidenavEnd(park){
-    if(this.sideMap != undefined ){
-    this.sideMap.serchAddres(park.Name);
-    }
+    this.currentParkName = park.Name;
   }
   mapShow(){
+    this.sideMap.serchAddres(this.currentParkName)
     console.log("mapshoe")
-    this.sideMapShow= true;
   }
   showPark(park) {
     this.addresService.setParkHausName(park.Name);

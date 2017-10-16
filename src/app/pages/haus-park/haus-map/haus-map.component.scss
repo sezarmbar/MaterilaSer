@@ -18,12 +18,12 @@
     }
     .warning {
         background-color: mat-color($primary,50);
-        border-left: 6px solid mat-color($primary, 500);
+        // border-left: 6px solid mat-color($primary, 500);
         color: black;
     }
     .danger {
         background-color: mat-color($accent,200);
-        border-left: 6px solid mat-color($accent,900);
+        // border-left: 6px solid mat-color($accent,900);
     }
     .adp-directions, .adp-summary {
         color: mat-color($primary,default-contrast);

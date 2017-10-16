@@ -53,6 +53,20 @@ export class statusFilter  implements PipeTransform{
        }
    }
 }
+@Pipe({
+  name: 'statusNameFilter',
+  pure: false
+})
+export class statusNameFilter  implements PipeTransform{
+   transform(status: string){
+       if (status === 'Stoerung') {
+           return 'Störung';
+       }else{
+           return status;
+       }
+   }
+}
+
 
 @Pipe({
   name: 'parkHausName',
@@ -68,5 +82,17 @@ export class parkHausName  implements PipeTransform{
        }else{
            return name;
        }
+   }
+}
+
+@Pipe({
+  name: 'FreiPlatz',
+  pure: false
+})
+export class FreiPlatz  implements PipeTransform{
+   transform(i : number){
+       if(i<0){
+           return 0;
+       }else{return i}
    }
 }

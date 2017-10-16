@@ -10,19 +10,29 @@
     .adp-maneuver{
         background-color: mat-color($primary,default-contrast);
     }
+    .btnclose {
+        background-color: mat-color($accent);
+        color: mat-color($accent,default-contrast);
+    }
     .adp-placemark{
         background-color: mat-color($primary);
         color: mat-color($primary,default-contrast);
         border: mat-color($primary);
     }
+    .infofortable{
+        color:mat-color($primary);
+    }
+    // tr:hover {
+    // background: mat-color($primary,default-contrast) !important;
+    // }
     .warning {
         background-color: mat-color($primary,50);
-        border-left: 6px solid mat-color($primary, 500);
+        // border-left: 6px solid mat-color($primary, 500);
         color: black;
     }
     .danger {
         background-color: mat-color($accent,200);
-        border-left: 6px solid mat-color($accent,900);
+        // border-left: 6px solid mat-color($accent,900);
     }
     .adp-directions, .adp-summary {
         color: mat-color($primary,default-contrast);
@@ -49,12 +59,12 @@
   .app-layout{
     height: calc(100vh - 64px);
   }
-// }
-// @media (max-width: 960px) {
-// .app-layout{
-//     height: calc(100vh - 48px);
-//   }
-// }
+.btnclose{
+  position: absolute;
+  left: 5px;
+  top: 58px;
+  z-index: 100;
+}
 .adp{
     width: 310px;
 }
@@ -97,7 +107,9 @@ p {
 .dataHeaderTable{
     text-align:center;
 }
-
+.infofortable{
+     text-align: left;  margin: auto; font-size:12px;padding-left: 6px;
+}
 .orange {
     color: Orange;
 }
@@ -113,12 +125,12 @@ p {
 }
 .info {
     background-color: #e7f3fe;
-    border-left: 6px solid #2196F3;
+    // border-left: 6px solid #2196F3;
 }
 
 .success {
     background-color: #ddffdd;
-    border-left: 6px solid #4CAF50;
+    // border-left: 6px solid #4CAF50;
 }
 
 
@@ -127,10 +139,23 @@ p {
         width: 600px;  
         margin: auto;
     }
+     .infofortable{
+        width: 550px;
+    }
 }
 @media screen and (max-width:599px ) {
+    .infofortable{
+        width: 95%;
+    }
+
     .dataTable{
         width: 100%;  
         margin: auto;
+    }
+}
+@media (max-height:560){
+    .heightfix{
+        background-color: red;
+        height: 200px;
     }
 }
